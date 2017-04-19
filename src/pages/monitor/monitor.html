@@ -28,77 +28,28 @@
             <ion-segment-button value="a">
                 RAM
             </ion-segment-button>
-            <ion-segment-button value="puppies">
-                CPU
+            <ion-segment-button value="gpio">
+                GPIO
             </ion-segment-button>
 
         </ion-segment>
     </div>
     <div [ngSwitch]="totalstatus">
-        <!--<ion-list *ngSwitchCase="'puppies'">
-    <ion-item>
-      <ion-thumbnail item-left>
-        <img src="img/thumbnail-puppy-1.jpg">
-      </ion-thumbnail>
-      <h2>Ruby</h2>
-    </ion-item>
-  </ion-list>-->
+        <!--<div *ngSwitchCase="'gpio'">
+            <ion-item>
+                <ion-thumbnail item-left>
+                    <img src="assets/img/gpio2.jpg">
+                </ion-thumbnail>
+                <h2>Ruby</h2>
+            </ion-item>
+            </ion-list>-->
         <!--<div class="col" align="middle" color="primary">
             <ion-icon name="home"></ion-icon>
             hostname :{{status.basic.hostname}}
         </div>-->
 
-    </div>
-
-
-    <div class="item item-icon-left" ng-click="">
-        <div class="row">
-            <div class="col" align="middle">
-                <i class="fa fa-home"></i>
-                <font face="verdana" color="green">hostname : {{status.basic.hostname}}</font>
-            </div>
-            <div class="col">
-                <font size="3" color="blue">uptime : {{status.basic.date}}</font>
-            </div>
-        </div>
-    </div>
-    <div class="item item-icon-left" ng-click="btncluster('basic.voltage')">
-        <div class="pic" style="position:relative">
-            <div class="ip" align="middle">
-                <i class="fa fa-globe" style="font-size: 20px !important;"></i><br> 192.168.12.2
-            </div>
-            <img src="img/line.png" height="10px" width="200px" style="">
-            <i class="fa fa-wif" style="font-size: 50px !important;"></i>
-            <img src="img/line.png" height="10px" width="200px" style="">
-            <div class="pic" style="position:relative">
-                <i class="fa fa-mobile" style="font-size: 50px !important;"></i>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">Data</div>
-            <div class="col"><i class="fa fa-download" aria-hidden="true"></i> {{status.network.eth0.rx_packet}}
-            </div>
-            <div class="col"><i class="fa fa-upload" aria-hidden="true"></i> {{status.network.eth0.tx_packet}}
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">Speed</div>
-            <div class="col"><i class="fa fa-download" aria-hidden="true"></i> {{status.network.eth0.rx_packet}} KB/s</div>
-            <div class="col"><i class="fa fa-upload" aria-hidden="true"></i> {{status.network.eth0.tx_packet}} KB/s</div>
-        </div>
-    </div>
-    <div>
-        <div class="progress">
-            <div class="progress-bar progress-bar-success" role="progressbar" style="width:40%">
-                Free Space
-            </div>
-            <div class="progress-bar progress-bar-warning" role="progressbar" style="width:10%">
-                Used
-            </div>
-            <div class="progress-bar progress-bar-danger" role="progressbar" style="width:20%">
-                Avail
-            </div>
-        </div>
+        <img src="../../assets/img/gpio2.png" width="100%" height="auto%">
+        <!--</div>-->
     </div>
 
 </ion-content>
