@@ -25,10 +25,11 @@ export class LoginPage {
       method: AuthMethods.Password,
       provider: AuthProviders.Password
     })
-    .then(auth => {
-      // Do custom things with auth
+      .then(auth => {
+        // Do custom things with auth
+        console.log(`uidddddd : ${auth.uid}`)
       console.log(this.loginData.email+" "+this.loginData.password);
-    this.navCtrl.push(HomePage, { uid: auth.auth.uid });
+    this.navCtrl.push(HomePage, { uid: auth.uid });
     })
     .catch(err => {
       // Handle error

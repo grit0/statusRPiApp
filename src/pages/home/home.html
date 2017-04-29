@@ -1,6 +1,6 @@
 <ion-header>
     <ion-navbar>
-        <ion-segment [(ngModel)]="pi">
+        <ion-segment [(ngModel)]="modeListPi">
             <ion-segment-button value="all">
                 All
             </ion-segment-button>
@@ -19,10 +19,9 @@
     </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content padding class="slide-in-both-ways">
     <!--<ion-searchbar [(ngModel)]="getItems($event)" [showCancelButton]="shouldShowCancel" (ionInput)="onInput($event)" (ionCancel)="onCancel($event)"> </ion-searchbar>-->
-
-    <div [ngSwitch]="pi">
+    <div [ngSwitch]="modeListPi">
 
         <ion-list *ngSwitchCase="'all'">
             <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
@@ -61,7 +60,7 @@
             </ion-item-sliding>
         </ion-list>
         <ion-list *ngSwitchCase="'bookmark'">
-            <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+            <ion-searchbar (ionInput)="getItemsBook($event)"></ion-searchbar>
             <ion-item-sliding (click)="monitor(item)" *ngFor="let item of rpiBookmark">
                 <ion-item>
                     <!--<button ion-item (click)="monitor(item)" *ngFor="let item of rpi"> -->

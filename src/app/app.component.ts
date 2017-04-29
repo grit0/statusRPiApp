@@ -15,20 +15,24 @@ import {Network} from '@ionic-native/network'
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
-  rootPage : any= TabsPage;
+  rootPage : any=TabsPage;
 pages: Array<{title: string, component: any}>;
 
  
 constructor(platform: Platform, private network: Network,
   private menu:MenuController,  
     statusBar: StatusBar, splashScreen: SplashScreen,
-    private af: AngularFire) {
+    private af: AngularFire,
+    // private navCtrl:NavController
+) {
   
     this.af.auth.subscribe(auth => {
       if(!auth)
         this.rootPage = LoginPage;
-      else
-        this.rootPage = TabsPage;
+      // else
+        // this.rootPage = TabsPage;
+
+ 
     });
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
