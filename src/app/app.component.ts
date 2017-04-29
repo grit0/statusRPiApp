@@ -5,7 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { TabsPage } from '../pages/tabs/tabs';
 import { MonitorPage } from '../pages/monitor/monitor';
-
+import { HomePage } from '../pages/home/home';
  
 import { AngularFire } from 'angularfire2';
 import { LoginPage } from '../pages/login/login';
@@ -27,8 +27,9 @@ constructor(platform: Platform, private network: Network,
 ) {
   
     this.af.auth.subscribe(auth => {
-      if(!auth)
-        this.rootPage = LoginPage;
+      if (!auth)
+        // this.rootPage = LoginPage;
+        this.rootPage = HomePage;
       // else
         // this.rootPage = TabsPage;
 
