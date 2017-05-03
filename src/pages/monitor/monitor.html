@@ -53,54 +53,75 @@
                     </ion-col>
                 </ion-row>
                 <ion-grid wrap>
-                    <ion-row responsive>
+                    <ion-row responsive-sm>
                         <ion-col width-33>
-                            <font size="3" color="red">Memory</font>
-                            <!--<div class="c100 p{{status.physical.cpu.cpu_usage.id}} green">
-                                <span>{{status.physical.ram.used*100/status.physical.ram.total | number: 0 }}%</span>
-                                <div class="slice">
-                                    <div class="bar"></div>
-                                    <div class="fill"></div>
+                            <ion-row>
+                                <font size="3" color="red">Memory</font>
+                            </ion-row>
+                            <ion-row>
+                                <div class="c100 p{{status.physical.ram.used/status.physical.ram.total*100 | number:'.0-0'}}">
+                                    <span>{{status.physical.ram.used/status.physical.ram.total | percent: '.0-2' }}</span>
+                                    <div class="slice">
+                                        <div class="bar"></div>
+                                        <div class="fill"></div>
+                                    </div>
                                 </div>
-                            </div>-->
-                            <div class="c100 p{{(status.physical.ram.used/100)}}">
-                                <span>{{status.physical.ram.used/100}}%</span>
-                                <div class="slice">
-                                    <div class="bar"></div>
-                                    <div class="fill"></div>
-                                </div>
-                            </div>
+                            </ion-row>
 
-                            <font size="2" color="red">
-                                <i class="fa fa-tasks" aria-hidden="true" color="primary"></i> Free:
-                            </font>
+                            <ion-row>
+                                <font size="2" color="red">
+                                    <i class="fa fa-tasks" aria-hidden="true" color="primary"></i> Free : {{status.physical.ram.free}}
+                                </font>
+                            </ion-row>
+                            <ion-row>
+                                <font size="2" color="red">Buffers : {{status.physical.ram.buffefs}}
+                                </font>
+                            </ion-row>
+                            <ion-row>
+                                <font size="2" color="red">Cached : {{status.physical.ram.cached}}
+                                </font>
+                            </ion-row>
+                            <ion-row>
+                                <font size="2" color="red">Shared : {{status.physical.ram.shared}}
+                                </font>
+                            </ion-row>
+                            <ion-row>
+                                <font size="2" color="red">Total : {{status.physical.ram.total}}
+                                </font>
+                            </ion-row>
 
-                            <font size="2" color="red">Used:</font><br/>
 
                         </ion-col>
 
                         <ion-col width-33>
-                            <font size="3" color="red">Progress</font>
-                            <div class="c100 p{{100-status.physical.cpu.cpu_usage.id | number}} green">
-                                <span>{{100-status.physical.cpu.cpu_usage.id | number}}%</span>
-                                <div class="slice">
-                                    <div class="bar"></div>
-                                    <div class="fill"></div>
+                            <ion-row>
+                                <font size="3" color="red">Progress</font>
+                            </ion-row>
+                            <ion-row>
+                                <div class="c100 p{{100-status.physical.cpu.cpu_usage.id | number:'.0-0'}} green">
+                                    <span>{{100-status.physical.cpu.cpu_usage.id | number:'.0-2'}}%</span>
+                                    <div class="slice">
+                                        <div class="bar"></div>
+                                        <div class="fill"></div>
+                                    </div>
                                 </div>
-                            </div>
-                            <font size="2" color="red">max:{{status.physical.cpu.max}}</font>
+                            </ion-row>
+                            <ion-row>
+                                <font size="2" color="red">max : {{status.physical.cpu.max}}</font>
+                                <font size="2" color="red">current : {{status.physical.cpu.current}}</font>
+                            </ion-row>
                         </ion-col>
 
                         <ion-col width-33 (click)="presentActionSheet()">
                             <font size="3" color="red">Storage</font>
                             <div class="col-xs-4 col-md-3 box-circle">
-                                <div class="progress-circle progress-{{status.physical.harddisk.use_percent}}">
-                                    <span>{{status.physical.harddisk.use_percent}}</span>
+                                <div class="progress-circle progress-{{status.physical.harddisk.use_percent | number:'.0-0'}}">
+                                    <span>{{status.physical.harddisk.use_percent|number:'.0-2'}}</span>
                                 </div>
                             </div>
                             <font size="2" color="red">Free : {{status.physical.harddisk.avail}} MB</font>
                             <br>
-                            <font size="2" color="red">Used : {{status.physical.harddisk.used}} GB</font>
+                            <font size="2" color="red">Used : {{status.physical.harddisk.used|number}} GB</font>
                             <br>
                             <font size="2" color="red">Total : {{status.physical.harddisk.size}} GB</font>
                         </ion-col>
@@ -178,6 +199,11 @@
         </div>
         <div *ngSwitchCase="'gpio'">
             <img src="../../assets/img/gpio2.png" width="auto" height="100%">
+        </div>
+
+        <div *ngSwitchCase="'basic'">
+            Hostname : {{status.basic.hostname}} Kernel Version : {{status.basic.kernel_version}} Machine : {{status.basic.machine}} Distor : {{status.basic.distro_name}}
+
         </div>
 
     </div>

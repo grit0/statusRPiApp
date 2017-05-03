@@ -9,6 +9,7 @@ import { AngularFire, FirebaseListObservable, FirebaseObjectObservable } from 'a
   Ionic pages and navigation.
 */
 @Component({
+  // styleUrls: ['./circle.css'],
   selector: 'page-monitor',
   templateUrl: 'monitor.html'
 })
