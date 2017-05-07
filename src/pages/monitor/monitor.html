@@ -23,14 +23,14 @@
             <ion-segment-button value="all">
                 All
             </ion-segment-button>
-            <ion-segment-button value="puppies">
+            <ion-segment-button value="basic">
                 Basic
             </ion-segment-button>
-            <ion-segment-button value="a">
-                RAM
+            <ion-segment-button value="physical">
+                Physical
             </ion-segment-button>
 
-            <ion-segment-button value="c">
+            <ion-segment-button value="network">
                 NETWORK
             </ion-segment-button>
             <ion-segment-button value="gpio">
@@ -202,10 +202,96 @@
         </div>
 
         <div *ngSwitchCase="'basic'">
-            Hostname : {{status.basic.hostname}} Kernel Version : {{status.basic.kernel_version}} Machine : {{status.basic.machine}} Distor : {{status.basic.distro_name}}
-
+            <ion-list>
+                <ion-item>
+                    <ion-icon ios="ios-home" md="md-home"></ion-icon> Hostname : {{status.basic.hostname}}</ion-item>
+                <ion-item>
+                    <ion-icon name="card"></ion-icon> Kernel Version : {{status.basic.kernel_version}}</ion-item>
+                <ion-item>
+                    <ion-icon ios="ios-laptop" md="md-laptop"></ion-icon> Machine : {{status.basic.machine}}</ion-item>
+                <ion-item>
+                    <ion-icon ios="ios-planet" md="md-planet"></ion-icon> Distor : {{status.basic.distro_name}}</ion-item>
+                <ion-item>
+                    <ion-icon ios="ios-calendar" md="md-calendar"></ion-icon> Date : {{status.basic.date}}</ion-item>
+                <ion-item>
+                    <ion-icon ios="ios-time" md="md-time"></ion-icon> Time Zone : {{status.geo.time_zone}}</ion-item>
+                <ion-item>
+                    <ion-icon ios="ios-outlet" md="md-outlet"></ion-icon> Voltage : {{status.basic.voltage}} vol</ion-item>
+                <ion-item><i class="fa fa-map-marker" aria-hidden="true"></i> District : {{status.geo.city}}</ion-item>
+                <ion-item><i class="fa fa-map-signs" aria-hidden="true"></i> City : {{status.geo.region_name}}</ion-item>
+                <ion-item><i class="fa fa-globe" aria-hidden="true"></i> Country : {{status.geo.country_name}}</ion-item>
+                <ion-item><i class="fa fa-envelope" aria-hidden="true"></i> Zip Code : {{status.geo.zip_code}}</ion-item>
+                <ion-item><i class="fa fa-flag" aria-hidden="true"></i> Latitude : {{status.geo.latitude}}</ion-item>
+                <ion-item><i class="fa fa-flag-o" aria-hidden="true"></i> Longitude : {{status.geo.longitude}}</ion-item>
+            </ion-list>
+            <!--</ion-row>-->
+            <!--</ion-card>-->
+            <!--<ion-row>
+                    <div class='card temp'>
+                        <div class='inner'>
+                            <div class='icon'></div>
+                            <div class='title'>
+                                <div class='text'>TEMPERATURE</div>
+                            </div>
+                            <div class='number'>{{status.basic.temperature}}</div>
+                            <div class='measure'>CELCIUS</div>
+                        </div>
+                    </div>
+                    <div class='card energy'>
+                        <div class='inner'>
+                            <div class='icon'></div>
+                            <div class='title'>
+                                <div class='text'>ENERGY</div>
+                            </div>
+                            <div class='number'>{{status.basic.voltage|number:'.0-2'}}</div>
+                            <div class='measure'>Vol</div>
+                        </div>
+                    </div>
+                </ion-row>-->
+            <!--</ion-grid>-->
         </div>
+        <div *ngSwitchCase="'physical'">
+            <ion-card>
+                <ion-card-header>
+                    RAM
+                </ion-card-header>
+                <ion-list>
 
+                    <ion-item>Used : {{status.physical.ram.used}}</ion-item>
+                    <ion-item>Free : {{status.physical.ram.free}}</ion-item>
+                    <ion-item>Cached : {{status.physical.ram.cached}}</ion-item>
+                    <ion-item>Shared : {{status.physical.ram.shared}}</ion-item>
+                    <ion-item>Buffers : {{status.physical.ram.buffefs}}</ion-item>
+                    <ion-item>Total : {{status.physical.ram.total}}</ion-item>
+                </ion-list>
+            </ion-card>
+            <ion-card>
+                <ion-card-header>
+                    Harddisk
+                </ion-card-header>
+                <ion-list>
+                    <ion-item>Used : {{status.physical.harddisk.used}}</ion-item>
+                    <ion-item>Avail : {{status.physical.harddisk.avail}}</ion-item>
+                    <ion-item>Total : {{status.physical.harddisk.size}}</ion-item>
+                </ion-list>
+            </ion-card>
+        </div>
+        <div *ngSwitchCase="'network'">
+            <ion-list>
+                <ion-item>IP : {{status.network.eth0.ip}}</ion-item>
+                <ion-item>IP Looback : {{status.network.eth0.ip_loopback}}</ion-item>
+                <ion-item>Subnet Mask : {{status.network.eth0.sub}}</ion-item>
+                <ion-item>MAC : {{status.network.eth0.mac}}</ion-item>
+                <ion-item>Bcast : {{status.network.eth0.bcast}}</ion-item>
+                <ion-item>IP Inet6 Global: {{status.network.eth0.inet6_global}}</ion-item>
+                <ion-item>IP Inet6 : {{status.network.eth0.inet6_link}}</ion-item>
+                <ion-item>RX Bytes : {{status.network.eth0.rx_bytes}}</ion-item>
+                <ion-item>RX Packet : {{status.network.eth0.rx_packet}}</ion-item>
+                <ion-item>TX Bytes : {{status.network.eth0.tx_bytes}}</ion-item>
+                <ion-item>TX Packet : {{status.network.eth0.tx_packet}}</ion-item>
+
+            </ion-list>
+        </div>
     </div>
 
 
