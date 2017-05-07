@@ -1,5 +1,8 @@
 {
-    "name": "statusRPiApp",
-    "app_id": "34652369",
-    "projectTypeId": "ionic-angular"
+  "name": "statusRPiApp",
+  "app_id": "34652369",
+  "projectTypeId": "ionic-angular",
+    "typescript": true,
+  "v2": true,
+  "type": "ionic-angular"
 }

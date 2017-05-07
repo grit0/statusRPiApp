@@ -1,12 +1,12 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
-import { AboutPage } from '../pages/about/about';
+import { NotificationPage } from '../pages/notification/notification';
 import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { LoginPage } from '../pages/login/login';
-
+import { SettingnotificationPage } from '../pages/settingnotification/settingnotification';
 import { OfflinePage } from '../pages/offline/offline';
 import { SignupPage } from '../pages/signup/signup';
 import { MonitorPage } from '../pages/monitor/monitor'
@@ -25,7 +25,8 @@ import { Network } from '@ionic-native/network';
 @NgModule({
   declarations: [
     MyApp,
-    AboutPage,
+    NotificationPage,
+    SettingnotificationPage,
     ContactPage,
     HomePage,
     TabsPage,
@@ -41,7 +42,8 @@ import { Network } from '@ionic-native/network';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    AboutPage,
+    NotificationPage,
+SettingnotificationPage, 
     ContactPage,
     HomePage,
     TabsPage,

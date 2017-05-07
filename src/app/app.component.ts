@@ -28,10 +28,10 @@ constructor(platform: Platform, private network: Network,
   
     this.af.auth.subscribe(auth => {
       if (!auth)
-        // this.rootPage = LoginPage;
-        this.rootPage = HomePage;
-      // else
-        // this.rootPage = TabsPage;
+        this.rootPage = LoginPage;
+        // this.rootPage = HomePage;
+      else
+        this.rootPage = TabsPage;
 
  
     });
