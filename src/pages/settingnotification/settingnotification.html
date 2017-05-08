@@ -14,16 +14,35 @@
 
 
 <ion-content padding>
-  <ion-list>  
+  <ion-list>
 
-  <ion-item (click)="noti(time)">Time</ion-item>
-  <ion-item>Temp</ion-item>
-  <ion-item>CPU usage</ion-item>
-  <ion-item>RAM usage</ion-item>
-  <ion-item>Storage usage</ion-item>
-  <ion-item>RX packet</ion-item>
-  <ion-item>TX packet</ion-item>
-</ion-list>
+    <ion-item>Temp
+      <ion-range [(ngModel)]="temp">
+        <ion-icon color="primary" range-left small name="thermometer"></ion-icon>
+        <ion-icon color="primary" range-right name="thermometer"></ion-icon>
+      </ion-range>
+    </ion-item>
+    <ion-item><ion-checkbox  checked="false"></ion-checkbox>
+      <ion-label color="primary"><i class="fa fa-desktop" aria-hidden="true"></i> CPU Usage</ion-label>
+      <ion-input type="number" placeholder="Alert cpu" min=0 max=100 value=80></ion-input>
+    </ion-item>
+      <ion-item>
+      <ion-label color="primary"><i class="fa fa-credit-card-alt" aria-hidden="true"></i> RAM Usage</ion-label>
+      <ion-input type="number" placeholder="Alert cpu" min=0 max=100 value=80></ion-input>
+    </ion-item>   <ion-item><ion-checkbox  checked="false"></ion-checkbox>
+      <ion-label color="primary"><i class="fa fa-hdd-o" aria-hidden="true"></i> Storage Usage</ion-label>
+      <ion-input type="number" placeholder="Alert cpu" min=0 max=100 value=80></ion-input>
+    </ion-item>   <ion-item><ion-checkbox  checked="false"></ion-checkbox>
+      <ion-label color="primary"><ion-icon name="cloud-download"></ion-icon> RX packet</ion-label>
+      <ion-input type="number" placeholder="Alert cpu" min=0 max=100 value=80></ion-input>
+    </ion-item><ion-item><ion-checkbox  checked="false"></ion-checkbox>
+      <ion-label color="primary"><ion-icon name="cloud-upload"></ion-icon>
+ TX packet</ion-label>
+      <ion-input type="number" placeholder="Alert cpu" min=0 max=100 value=80></ion-input>
+    </ion-item>
 
+  </ion-list>
 
+<button ion-button color="danger" (click)="confirm()"> <ion-icon name="alert"></ion-icon>Confirm</button>
+<button ion-button (click)="cancel()"> Cancel</button>
 </ion-content>

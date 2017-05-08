@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams} from 'ionic-angular';
+import { NavController, NavParams,ModalController} from 'ionic-angular';
 import { SettingnotificationPage } from '../settingnotification/settingnotification';
 
 /*
@@ -14,7 +14,7 @@ import { SettingnotificationPage } from '../settingnotification/settingnotificat
 })
 export class NotificationPage {
   a: string = "50%";
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  constructor(public navCtrl: NavController, public navParams: NavParams,public modal:ModalController) {}
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad NotificationPage');
@@ -24,5 +24,8 @@ export class NotificationPage {
 
     this.navCtrl.push(SettingnotificationPage);
   }
-
+  createModal() {
+    let myModel = this.modal.create(SettingnotificationPage);
+    myModel.present();
+}
 }
