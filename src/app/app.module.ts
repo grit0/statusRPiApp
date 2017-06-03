@@ -12,6 +12,8 @@ import { SignupPage } from '../pages/signup/signup';
 import { MonitorPage } from '../pages/monitor/monitor'
 import { ChartstatusPage} from '../pages/chartstatus/chartstatus'
 import {ParallelPage} from '../pages/parallel/parallel'
+import { ProgressBarComponent } from '../components/progress-bar/progress-bar';
+ 
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -40,7 +42,9 @@ import { Firebase } from '../providers/firebase'
     SignupPage,
     MonitorPage
     , ChartstatusPage
-    ,ParallelPage
+    , ParallelPage,
+    ProgressBarComponent,
+    ProgressBarComponent
   ],
   imports: [
     IonicModule.forRoot(MyApp),

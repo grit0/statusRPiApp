@@ -12,7 +12,7 @@ import {Firebase} from '../../providers/firebase'
   templateUrl: 'parallel.html'
 })
 export class ParallelPage {
-
+a=40;
   constructor(public navCtrl: NavController, public navParams: NavParams,public dataFire:Firebase) {
     console.log(this.dataFire.obRpi)
  
