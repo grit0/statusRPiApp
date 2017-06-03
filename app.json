@@ -1,0 +1,7 @@
+{
+    "name": "Monitor Status",
+    "description": "Project2 cs kmutnb",
+    "repository": "https://github.com/grit0/statusRPiApp",
+    "logo": "http://ionicframework.com/img/ionic-logo-blog.png",
+    "keywords": ["ionic", "static"]
+}

@@ -1,0 +1,113 @@
+<ion-header>
+    <ion-navbar color="secondary">
+        <button ion-button menuToggle icon-only>
+      <ion-icon name='menu'></ion-icon>
+    </button>
+        <ion-segment [(ngModel)]="modeListPi">
+            <ion-segment-button value="all">
+                All
+            </ion-segment-button>
+            <ion-segment-button value="bookmark">
+                Bookmarks
+                <ion-badge item-right>{{rpiBookmark.length}}</ion-badge>
+            </ion-segment-button>
+        </ion-segment>
+        <!--<ion-buttons start>
+            <button ion-button icon-only (click)="logout()">
+                 <ion-icon name="contact"></ion-icon>
+            </button>
+        </ion-buttons>-->
+
+        <!--<ion-title>Home</ion-title>-->
+
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding class="slide-in-both-ways">
+    <!--<ion-searchbar [(ngModel)]="getItems($event)" [showCancelButton]="shouldShowCancel" (ionInput)="onInput($event)" (ionCancel)="onCancel($event)"> </ion-searchbar>-->
+    <div [ngSwitch]="modeListPi">
+
+        <ion-list *ngSwitchCase="'all'">
+            <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+            <!--<button (click)="monitor(item)" *ngFor="let item of rpi">
+            {{ item }}
+         </button>-->
+            <!--{{dataFire.objRpi}}-->
+            <ion-item-sliding *ngFor="let item of dataFire.rpi">
+                <ion-item (click)="monitor(item)">
+                    <!--<button ion-item (click)="monitor(item)" *ngFor="let item of rpi"> -->
+                    <!--<ion-thumbnail item-left>
+                    <img src="assets/img/thumbnail-rpi.jpg" width="75%" height=auto>
+                </ion-thumbnail>-->
+                    <ion-avatar item-left>
+
+                        <img src="assets/img/thumbnail-rpi.jpg">
+                    </ion-avatar>
+                    <h2 color='primary'>{{ item | uppercase}}</h2>
+
+                    <!--</button>-->
+                </ion-item>
+
+                <ion-item-options side="left">
+                    <button ion-button color="secondary" (click)="prompt(item)">
+                    <i class="fa fa-terminal" aria-hidden="true"></i>prompt
+                </button>
+                    <button ion-button color="danger" (click)="shutdown(item)">
+                    <!--<i class="fa fa-power-off" aria-hidden="true"></i>-->
+                    <ion-icon name="power"></ion-icon>shutdown
+                </button>
+                </ion-item-options>
+
+                <ion-item-options side="right">
+                    <button ion-button (click)="bookmark(item)"><ion-icon name="bookmark"></ion-icon>bookmark</button>
+
+                </ion-item-options>
+            </ion-item-sliding>
+        </ion-list>
+        <ion-list *ngSwitchCase="'bookmark'">
+            <ion-searchbar (ionInput)="getItemsBook($event)"></ion-searchbar>
+            <ion-item-sliding *ngFor="let item of rpiBookmark">
+                <ion-item (click)="monitor(item)">
+                    <!--<button ion-item (click)="monitor(item)" *ngFor="let item of rpi"> -->
+                    <!--<ion-thumbnail item-left>
+                    <img src="assets/img/thumbnail-rpi.jpg" width="75%" height=auto>
+                </ion-thumbnail>-->
+                    <ion-avatar item-left>
+
+                        <img src="assets/img/thumbnail-rpi.jpg">
+                    </ion-avatar>
+                    <h2 color='primary'>{{ item | uppercase}}</h2>
+
+                    <!--</button>-->
+                </ion-item>
+
+                <ion-item-options side="left">
+                    <button ion-button color="secondary" (click)="prompt(item)">
+                    <i class="fa fa-terminal" aria-hidden="true"></i>prompt
+                </button>
+                    <button ion-button color="danger" (click)="shutdown(item)">
+                    <!--<i class="fa fa-power-off" aria-hidden="true"></i>-->
+                    <ion-icon name="power"></ion-icon>shutdown
+                </button>
+                </ion-item-options>
+
+                <ion-item-options side="right">
+                    <button ion-button (click)="delBookmark(item)"><ion-icon name="bookmark"></ion-icon>Delete</button>
+
+                </ion-item-options>
+            </ion-item-sliding>
+        </ion-list>
+    </div>
+    <ion-fab right bottom>
+        <button ion-fab color="header"><ion-icon name="arrow-dropleft"></ion-icon></button>
+        <ion-fab-list side="left">
+            <button ion-fab (click)="gotoChart()" color="content"><ion-icon name="stats"></ion-icon></button>
+            <button ion-fab color="content" (click)="parallel()"><ion-icon name="git-compare"></ion-icon></button>
+        </ion-fab-list>
+    </ion-fab>
+    <ion-infinite-scroll>
+        <ion-infinite-scroll-content>
+        </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+    <!--<button ion-button [navPush]="aboutPage">Go To About</button>-->
+</ion-content>

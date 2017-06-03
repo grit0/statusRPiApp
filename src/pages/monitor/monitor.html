@@ -1,0 +1,1032 @@
+<!--
+  Generated template for the Monitor page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-navbar color="primary">
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>Monitoring</ion-title>
+        <ion-buttons end>
+            <button ion-button icon-only [hidden]="!modeOffline" (click)="syncOffline()">
+                <ion-icon name="sync"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+    <!--<link rel="stylesheet" href="../../www/styles/circle.css">-->
+</ion-header>
+
+
+<ion-content padding>
+
+    <div padding>
+        <ion-segment [(ngModel)]="totalstatus">
+            <ion-segment-button value="all">
+                All
+            </ion-segment-button>
+            <ion-segment-button value="basic">
+                Basic
+            </ion-segment-button>
+            <ion-segment-button value="physical">
+                Physical
+            </ion-segment-button>
+
+            <ion-segment-button value="network">
+                NETWORK
+            </ion-segment-button>
+            <ion-segment-button value="gpio">
+                GPIO
+            </ion-segment-button>
+        </ion-segment>
+    </div>
+
+    <div [ngSwitch]="totalstatus">
+        <!--{{status[mac].ch}}-->
+        <!--{{dataFir.statusFire.ch}}-->
+
+        <!--{{dataFire.rpi }}-->
+
+        <div *ngSwitchCase="'all'">
+            <ion-grid padding text-center class="item item-icon-left" ng-click="">
+                <ion-row responsive-sm>
+                    <ion-col width-30>
+                        <i> <img src="assets/img/Home-96.png" width="25px" height="25px"></i>
+                        <font face="verdana" font size="4" color="#08088A">HOSTNAME : {{status.basic.hostname}}</font>
+                    </ion-col>
+                    <ion-col width-70>
+                        <i><img src="assets/img/uptime.png" width="25px" height="25px"></i>
+                        <font face="verdana" font size="4" color="#08088A">UPTIME : {{status.basic.date}}</font>
+                    </ion-col>
+                </ion-row>
+                <ion-grid wrap>
+                    <ion-row responsive-sm>
+                        <ion-col>
+                            <ion-row class="center">
+                                <font size="3" color="red">Memory</font>
+                            </ion-row>
+                            <br>
+                            <ion-row>
+                                <div class="c100 p{{status.physical.ram.used/status.physical.ram.total*100 | number:'.0-0'}} center">
+                                    <span>{{status.physical.ram.used/status.physical.ram.total | percent: '.0-2' }}</span>
+                                    <div class="slice">
+                                        <div class="bar"></div>
+                                        <div class="fill"></div>
+                                    </div>
+                                </div>
+                            </ion-row>
+
+                            <ion-row class="center">
+                                <font size="2" color="red">
+                                    <i class="fa fa-tasks" aria-hidden="true" color="primary"></i> Free : {{status.physical.ram.free}}
+                                </font>
+                            </ion-row>
+                            <ion-row class="center">
+                                <font size="2" color="red">Buffers : {{status.physical.ram.buffers}}
+                                </font>
+                            </ion-row>
+                            <ion-row class="center">
+                                <font size="2" color="red">Cached : {{status.physical.ram.cached}}
+                                </font>
+                            </ion-row>
+                            <ion-row class="center">
+                                <font size="2" color="red">Shared : {{status.physical.ram.shared}}
+                                </font>
+                            </ion-row>
+                            <ion-row class="center">
+                                <font size="2" color="red">Total : {{status.physical.ram.total}}
+                                </font>
+                            </ion-row>
+
+
+                        </ion-col>
+
+                        <ion-col>
+                            <ion-row class="center">
+                                <font size="3" color="red">CPU</font>
+                            </ion-row>
+                            <br>
+                            <ion-row>
+                                <div class="c100 p{{100-status.physical.cpu.cpu_usage.id | number:'.0-0'}} green center">
+                                    <span>{{100-status.physical.cpu.cpu_usage.id | number:'.0-2'}}%</span>
+                                    <div class="slice">
+                                        <div class="bar"></div>
+                                        <div class="fill"></div>
+                                    </div>
+                                </div>
+                            </ion-row>
+                            <ion-row class="center">
+                                <font size="2" color="red">max : {{status.physical.cpu.max}}</font>
+                            </ion-row>
+                            <ion-row class="center">
+                                <font size="2" color="red">current : {{status.physical.cpu.current}}</font>
+                            </ion-row>
+
+                        </ion-col>
+
+                        <ion-col (click)="presentActionSheet()">
+                            <font size="3" color="red">Storage</font>
+                            <br>
+                            <div class="col-xs-4 col-md-3 box-circle">
+                                <div class="progress-circle progress-{{status.physical.harddisk.use_percent | number:'.0-0'}}">
+                                    <span>{{status.physical.harddisk.use_percent|number:'.0-2'}}</span>
+                                </div>
+                            </div>
+                            <font size="2" color="red">Free : {{status.physical.harddisk.avail}} MB</font>
+                            <br>
+                            <font size="2" color="red">Used : {{status.physical.harddisk.used|number}} GB</font>
+                            <br>
+                            <font size="2" color="red">Total : {{status.physical.harddisk.size}} GB</font>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+            </ion-grid>
+
+            <div class="pic center" style="position:relative">
+                <ion-card style="width:95%">
+
+                    <ion-card-content>
+                        <ion-grid wrap responsive-sm>
+                            <ion-row>
+                                <ion-col width-33>
+                                    <ion-icon name="home"></ion-icon>
+                                </ion-col>
+                                <ion-col width-33>
+                                </ion-col>
+                                <ion-col width-33>
+                                    <ion-icon name="globe"></ion-icon>
+                                </ion-col>
+                            </ion-row>
+                            <ion-row>
+                                <ion-col width-10></ion-col>
+                                <ion-col>Private IP : {{status.network.eth0.ip}}</ion-col>
+                                <ion-col width-10></ion-col>
+                                <ion-col>Public IP : {{status.geo.ip}}</ion-col>
+                                <ion-col width-10></ion-col>
+                            </ion-row>
+                            <ion-row>
+                                <ion-col width-33>Packet</ion-col>
+                                <ion-col width-33><i class="fa fa-download" aria-hidden="true"></i> {{status.network.eth0.rx_packet}}
+                                </ion-col>
+                                <ion-col width-33><i class="fa fa-upload" aria-hidden="true"></i> {{status.network.eth0.tx_packet}}
+                                </ion-col>
+                            </ion-row>
+                            <ion-row>
+                                <ion-col width-33> Data</ion-col>
+                                <ion-col width-33><i class="fa fa-download" aria-hidden="true"></i> {{status.network.eth0.rx_bytes}} </ion-col>
+                                <ion-col width-33><i class="fa fa-upload" aria-hidden="true"></i> {{status.network.eth0.tx_bytes}} </ion-col>
+                            </ion-row>
+
+                        </ion-grid>
+                    </ion-card-content>
+                </ion-card>
+            </div>
+        </div>
+        <div *ngSwitchCase="'gpio'">
+
+            <ion-slides>
+                <ion-slide>
+                    <ion-grid>
+                        <ion-row>
+                            <ion-col col-6>
+                                <ion-item color="secondary">
+                                    <ion-label> INPUT </ion-label>
+                                    <ion-label> PIN </ion-label>
+                                    <ion-label> NAME </ion-label>
+                                    <ion-label> OFF/ON </ion-label>
+                                </ion-item>
+                            </ion-col>
+                            <ion-col col-6>
+                                <ion-item color="woman">
+                                    <ion-label> INPUT </ion-label>
+                                    <ion-label> PIN </ion-label>
+                                    <ion-label> NAME </ion-label>
+                                    <ion-label> OFF/ON </ion-label>
+
+                                </ion-item>
+                            </ion-col>
+                        </ion-row>
+                        <ion-row>
+                            <ion-col col-6>
+                                <ion-item>
+                                    <ion-checkbox color="secondary" disabled="true" [(ngModel)]="status.peripheral.gpio[1].modeIN" (ionChange)="changeGpiomodeIN($event,status.peripheral.gpio[1].pin)"></ion-checkbox>
+                                    <ion-label color="secondary"> {{status.peripheral.gpio[1].pin}} </ion-label>
+                                    <ion-label color="secondary"> {{status.peripheral.gpio[1].name}} </ion-label>
+                                    <ion-toggle color="secondary" disabled="true" [(ngModel)]="status.peripheral.gpio[1].value" (ionChange)="changeGpioValue(status.peripheral.gpio[1].pin)"></ion-toggle>
+                                </ion-item>
+                            </ion-col>
+                            <ion-col col-6>
+                                <ion-item>
+                                    <ion-checkbox color="woman" disabled="true" [(ngModel)]="status.peripheral.gpio[2].modeIN" (ionChange)="changeGpiomodeIN($event,status.peripheral.gpio[2].pin)"></ion-checkbox>
+                                    <ion-label color="woman"> {{status.peripheral.gpio[2].pin}} </ion-label>
+                                    <ion-label color="woman"> {{status.peripheral.gpio[2].name}} </ion-label>
+                                    <ion-toggle color="woman" disabled="true" [(ngModel)]="status.peripheral.gpio[2].value" (ionChange)="changeGpioValue(status.peripheral.gpio[2].pin)"></ion-toggle>
+                                </ion-item>
+                            </ion-col>
+                        </ion-row>
+
+                        <ion-row>
+                            <ion-col col-6>
+                                <ion-item>
+                                    <ion-checkbox color="secondary" [(ngModel)]="status.peripheral.gpio[3].modeIN" (ionChange)="changeGpiomodeIN($event,status.peripheral.gpio[3].pin)"></ion-checkbox>
+                                    <ion-label color="secondary"> {{status.peripheral.gpio[3].pin}} </ion-label>
+                                    <ion-label color="secondary"> {{status.peripheral.gpio[3].name}} </ion-label>
+                                    <ion-toggle color="secondary" [(disabled)]="status.peripheral.gpio[3].modeIN" [(ngModel)]="status.peripheral.gpio[3].value"
+                                        (ionChange)="changeGpioValue(status.peripheral.gpio[3].pin)"></ion-toggle>
+                                </ion-item>
+                            </ion-col>
+                            <ion-col col-6>
+                                <ion-item>
+                                    <ion-checkbox color="woman" disabled="true" [(ngModel)]="status.peripheral.gpio[4].modeIN" (ionChange)="changeGpiomodeIN($event,status.peripheral.gpio[4].pin)"></ion-checkbox>
+                                    <ion-label color="woman"> {{status.peripheral.gpio[4].pin}} </ion-label>
+                                    <ion-label color="woman"> {{status.peripheral.gpio[4].name}} </ion-label>
+                                    <ion-toggle color="woman" disabled="true" [(ngModel)]="status.peripheral.gpio[4].value" (ionChange)="changeGpioValue(status.peripheral.gpio[4].pin)"></ion-toggle>
+                                </ion-item>
+                            </ion-col>
+                        </ion-row>
+
+                        <ion-row>
+                            <ion-col col-6>
+                                <ion-item>
+                                    <ion-checkbox color="secondary" [(ngModel)]="status.peripheral.gpio[5].modeIN" (ionChange)="changeGpiomodeIN($event,status.peripheral.gpio[5].pin)"></ion-checkbox>
+                                    <ion-label color="secondary"> {{status.peripheral.gpio[5].pin}} </ion-label>
+                                    <ion-label color="secondary"> {{status.peripheral.gpio[5].name}} </ion-label>
+                                    <ion-toggle color="secondary" [(disabled)]="status.peripheral.gpio[5].modeIN" [(ngModel)]="status.peripheral.gpio[5].value"
+                                        (ionChange)="changeGpioValue(status.peripheral.gpio[5].pin)"></ion-toggle>
+                                </ion-item>
+                            </ion-col>
+                            <ion-col col-6>
+                                <ion-item>
+                                    <ion-checkbox color="woman" disabled="true" [(ngModel)]="status.peripheral.gpio[6].modeIN" (ionChange)="changeGpiomodeIN($event,status.peripheral.gpio[6].pin)"></ion-checkbox>
+                                    <ion-label color="woman"> {{status.peripheral.gpio[6].pin}} </ion-label>
+                                    <ion-label color="woman"> {{status.peripheral.gpio[6].name}} </ion-label>
+                                    <ion-toggle color="woman" disabled="true" [(ngModel)]="status.peripheral.gpio[6].value" (ionChange)="changeGpioValue(status.peripheral.gpio[6].pin)"></ion-toggle>
+                                </ion-item>
+                            </ion-col>
+                        </ion-row>
+                        <ion-row>
+                            <ion-col col-6>
+                                <ion-item>
+                                    <ion-checkbox color="secondary" [(ngModel)]="status.peripheral.gpio[7].modeIN" (ionChange)="changeGpiomodeIN($event,status.peripheral.gpio[7].pin)"></ion-checkbox>
+                                    <ion-label color="secondary"> {{status.peripheral.gpio[7].pin}} </ion-label>
+                                    <ion-label color="secondary"> {{status.peripheral.gpio[7].name}} </ion-label>
+                                    <ion-toggle color="secondary" [(disabled)]="status.peripheral.gpio[7].modeIN" [(ngModel)]="status.peripheral.gpio[7].value"
+                                        (ionChange)="changeGpioValue(status.peripheral.gpio[7].pin)"></ion-toggle>
+                                </ion-item>
+                            </ion-col>
+                            <ion-col col-6>
+                                <ion-item>
+                                    <ion-checkbox color="woman" [(ngModel)]="status.peripheral.gpio[8].modeIN" (ionChange)="changeGpiomodeIN($event,status.peripheral.gpio[8].pin)"></ion-checkbox>
+                                    <ion-label color="woman"> {{status.peripheral.gpio[8].pin}} </ion-label>
+                                    <ion-label color="woman"> {{status.peripheral.gpio[8].name}} </ion-label>
+                                    <ion-toggle color="woman" [(disabled)]="status.peripheral.gpio[8].modeIN" [(ngModel)]="status.peripheral.gpio[8].value" (ionChange)="changeGpioValue(status.peripheral.gpio[8].pin)"></ion-toggle>
+                                </ion-item>
+                            </ion-col>
+                        </ion-row>
+
+                        <ion-row>
+                            <ion-col col-6>
+                                <ion-item>
+                                    <ion-checkbox color="secondary" disabled="true" [(ngModel)]="status.peripheral.gpio[9].modeIN" (ionChange)="changeGpiomodeIN($event,status.peripheral.gpio[9].pin)"></ion-checkbox>
+                                    <ion-label color="secondary"> {{status.peripheral.gpio[9].pin}} </ion-label>
+                                    <ion-label color="secondary"> {{status.peripheral.gpio[9].name}} </ion-label>
+                                    <ion-toggle color="secondary" disabled="true" [(ngModel)]="status.peripheral.gpio[9].value" (ionChange)="changeGpioValue(status.peripheral.gpio[9].pin)"></ion-toggle>
+                                </ion-item>
+                            </ion-col>
+                            <ion-col col-6>
+                                <ion-item>
+                                    <ion-checkbox color="woman" [(ngModel)]="status.peripheral.gpio[10].modeIN" (ionChange)="changeGpiomodeIN($event,status.peripheral.gpio[10].pin)"></ion-checkbox>
+                                    <ion-label color="woman"> {{status.peripheral.gpio[10].pin}} </ion-label>
+                                    <ion-label color="woman"> {{status.peripheral.gpio[10].name}} </ion-label>
+                                    <ion-toggle color="woman" [(disabled)]="status.peripheral.gpio[10].modeIN" [(ngModel)]="status.peripheral.gpio[10].value"
+                                        (ionChange)="changeGpioValue(status.peripheral.gpio[10].pin)"></ion-toggle>
+                                </ion-item>
+                            </ion-col>
+                        </ion-row>
+
+                        <ion-row>
+                            <ion-col col-6>
+                                <ion-item>
+                                    <ion-checkbox color="secondary" [(ngModel)]="status.peripheral.gpio[11].modeIN" (ionChange)="changeGpiomodeIN($event,status.peripheral.gpio[11].pin)"></ion-checkbox>
+                                    <ion-label color="secondary"> {{status.peripheral.gpio[11].pin}} </ion-label>
+                                    <ion-label color="secondary"> {{status.peripheral.gpio[11].name}} </ion-label>
+                                    <ion-toggle color="secondary" [(disabled)]="status.peripheral.gpio[11].modeIN" [(ngModel)]="status.peripheral.gpio[11].value"
+                                        (ionChange)="changeGpioValue(status.peripheral.gpio[11].pin)"></ion-toggle>
+                                </ion-item>
+                            </ion-col>
+                            <ion-col col-6>
+                                <ion-item>
+                                    <ion-checkbox color="woman" [(ngModel)]="status.peripheral.gpio[12].modeIN" (ionChange)="changeGpiomodeIN($event,status.peripheral.gpio[12].pin)"></ion-checkbox>
+                                    <ion-label color="woman"> {{status.peripheral.gpio[12].pin}} </ion-label>
+                                    <ion-label color="woman"> {{status.peripheral.gpio[12].name}} </ion-label>
+                                    <ion-toggle color="woman" [(disabled)]="status.peripheral.gpio[12].modeIN" [(ngModel)]="status.peripheral.gpio[12].value"
+                                        (ionChange)="changeGpioValue(status.peripheral.gpio[12].pin)"></ion-toggle>
+                                </ion-item>
+                            </ion-col>
+                        </ion-row>
+
+                        <ion-row>
+                            <ion-col col-6>
+                                <ion-item>
+                                    <ion-checkbox color="secondary" [(ngModel)]="status.peripheral.gpio[13].modeIN" (ionChange)="changeGpiomodeIN($event,status.peripheral.gpio[13].pin)"></ion-checkbox>
+                                    <ion-label color="secondary"> {{status.peripheral.gpio[13].pin}} </ion-label>
+                                    <ion-label color="secondary"> {{status.peripheral.gpio[13].name}} </ion-label>
+                                    <ion-toggle color="secondary" [(disabled)]="status.peripheral.gpio[13].modeIN" [(ngModel)]="status.peripheral.gpio[13].value"
+                                        (ionChange)="changeGpioValue(status.peripheral.gpio[13].pin)"></ion-toggle>
+                                </ion-item>
+                            </ion-col>
+                            <ion-col col-6>
+                                <ion-item>
+                                    <ion-checkbox color="woman" disabled="true" [(ngModel)]="status.peripheral.gpio[14].modeIN" (ionChange)="changeGpiomodeIN($event,status.peripheral.gpio[14].pin)"></ion-checkbox>
+                                    <ion-label color="woman"> {{status.peripheral.gpio[14].pin}} </ion-label>
+                                    <ion-label color="woman"> {{status.peripheral.gpio[14].name}} </ion-label>
+                                    <ion-toggle color="woman" disabled="true" [(ngModel)]="status.peripheral.gpio[14].value" (ionChange)="changeGpioValue(status.peripheral.gpio[14].pin)"></ion-toggle>
+                                </ion-item>
+                            </ion-col>
+                        </ion-row>
+
+                        <ion-row>
+                            <ion-col col-6>
+                                <ion-item>
+                                    <ion-checkbox color="secondary" [(ngModel)]="status.peripheral.gpio[15].modeIN" (ionChange)="changeGpiomodeIN($event,status.peripheral.gpio[15].pin)"></ion-checkbox>
+                                    <ion-label color="secondary"> {{status.peripheral.gpio[15].pin}} </ion-label>
+                                    <ion-label color="secondary"> {{status.peripheral.gpio[15].name}} </ion-label>
+                                    <ion-toggle color="secondary" [(disabled)]="status.peripheral.gpio[15].modeIN" [(ngModel)]="status.peripheral.gpio[15].value"
+                                        (ionChange)="changeGpioValue(status.peripheral.gpio[15].pin)"></ion-toggle>
+                                </ion-item>
+                            </ion-col>
+                            <ion-col col-6>
+                                <ion-item>
+                                    <ion-checkbox color="woman" [(ngModel)]="status.peripheral.gpio[16].modeIN" (ionChange)="changeGpiomodeIN($event,status.peripheral.gpio[16].pin)"></ion-checkbox>
+                                    <ion-label color="woman"> {{status.peripheral.gpio[16].pin}} </ion-label>
+                                    <ion-label color="woman"> {{status.peripheral.gpio[16].name}} </ion-label>
+                                    <ion-toggle color="woman" [(disabled)]="status.peripheral.gpio[16].modeIN" [(ngModel)]="status.peripheral.gpio[16].value"
+                                        (ionChange)="changeGpioValue(status.peripheral.gpio[16].pin)"></ion-toggle>
+                                </ion-item>
+                            </ion-col>
+                        </ion-row>
+
+                        <ion-row>
+                            <ion-col col-6>
+                                <ion-item>
+                                    <ion-checkbox color="secondary" disabled="true" [(ngModel)]="status.peripheral.gpio[17].modeIN" (ionChange)="changeGpiomodeIN($event,status.peripheral.gpio[17].pin)"></ion-checkbox>
+                                    <ion-label color="secondary"> {{status.peripheral.gpio[17].pin}} </ion-label>
+                                    <ion-label color="secondary"> {{status.peripheral.gpio[17].name}} </ion-label>
+                                    <ion-toggle color="secondary" disabled="true" [(ngModel)]="status.peripheral.gpio[17].value" (ionChange)="changeGpioValue(status.peripheral.gpio[17].pin)"></ion-toggle>
+                                </ion-item>
+                            </ion-col>
+                            <ion-col col-6>
+                                <ion-item>
+                                    <ion-checkbox color="woman" [(ngModel)]="status.peripheral.gpio[18].modeIN" (ionChange)="changeGpiomodeIN($event,status.peripheral.gpio[18].pin)"></ion-checkbox>
+                                    <ion-label color="woman"> {{status.peripheral.gpio[18].pin}} </ion-label>
+                                    <ion-label color="woman"> {{status.peripheral.gpio[18].name}} </ion-label>
+                                    <ion-toggle color="woman" [(disabled)]="status.peripheral.gpio[18].modeIN" [(ngModel)]="status.peripheral.gpio[18].value"
+                                        (ionChange)="changeGpioValue(status.peripheral.gpio[18].pin)"></ion-toggle>
+                                </ion-item>
+                            </ion-col>
+                        </ion-row>
+
+                        <ion-row>
+                            <ion-col col-6>
+                                <ion-item>
+                                    <ion-checkbox color="secondary" [(ngModel)]="status.peripheral.gpio[19].modeIN" (ionChange)="changeGpiomodeIN($event,status.peripheral.gpio[19].pin)"></ion-checkbox>
+                                    <ion-label color="secondary"> {{status.peripheral.gpio[19].pin}} </ion-label>
+                                    <ion-label color="secondary"> {{status.peripheral.gpio[19].name}} </ion-label>
+                                    <ion-toggle color="secondary" [(disabled)]="status.peripheral.gpio[19].modeIN" [(ngModel)]="status.peripheral.gpio[19].value"
+                                        (ionChange)="changeGpioValue(status.peripheral.gpio[19].pin)"></ion-toggle>
+                                </ion-item>
+                            </ion-col>
+                            <ion-col col-6>
+                                <ion-item>
+                                    <ion-checkbox color="woman" disabled="true" [(ngModel)]="status.peripheral.gpio[20].modeIN" (ionChange)="changeGpiomodeIN($event,status.peripheral.gpio[20].pin)"></ion-checkbox>
+                                    <ion-label color="woman"> {{status.peripheral.gpio[20].pin}} </ion-label>
+                                    <ion-label color="woman"> {{status.peripheral.gpio[20].name}} </ion-label>
+                                    <ion-toggle color="woman" disabled="true" [(ngModel)]="status.peripheral.gpio[20].value" (ionChange)="changeGpioValue(status.peripheral.gpio[20].pin)"></ion-toggle>
+                                </ion-item>
+                            </ion-col>
+                        </ion-row>
+
+                        <ion-row>
+                            <ion-col col-6>
+                                <ion-item>
+                                    <ion-checkbox color="secondary" [(ngModel)]="status.peripheral.gpio[21].modeIN" (ionChange)="changeGpiomodeIN($event,status.peripheral.gpio[21].pin)"></ion-checkbox>
+                                    <ion-label color="secondary"> {{status.peripheral.gpio[21].pin}} </ion-label>
+                                    <ion-label color="secondary"> {{status.peripheral.gpio[21].name}} </ion-label>
+                                    <ion-toggle color="secondary" [(disabled)]="status.peripheral.gpio[21].modeIN" [(ngModel)]="status.peripheral.gpio[21].value"
+                                        (ionChange)="changeGpioValue(status.peripheral.gpio[21].pin)"></ion-toggle>
+                                </ion-item>
+                            </ion-col>
+                            <ion-col col-6>
+                                <ion-item>
+                                    <ion-checkbox color="woman" [(ngModel)]="status.peripheral.gpio[22].modeIN" (ionChange)="changeGpiomodeIN($event,status.peripheral.gpio[22].pin)"></ion-checkbox>
+                                    <ion-label color="woman"> {{status.peripheral.gpio[22].pin}} </ion-label>
+                                    <ion-label color="woman"> {{status.peripheral.gpio[22].name}} </ion-label>
+                                    <ion-toggle color="woman" [(disabled)]="status.peripheral.gpio[22].modeIN" [(ngModel)]="status.peripheral.gpio[22].value"
+                                        (ionChange)="changeGpioValue(status.peripheral.gpio[22].pin)"></ion-toggle>
+                                </ion-item>
+                            </ion-col>
+                        </ion-row>
+
+                        <ion-row>
+                            <ion-col col-6>
+                                <ion-item>
+                                    <ion-checkbox color="secondary" [(ngModel)]="status.peripheral.gpio[23].modeIN" (ionChange)="changeGpiomodeIN($event,status.peripheral.gpio[23].pin)"></ion-checkbox>
+                                    <ion-label color="secondary"> {{status.peripheral.gpio[23].pin}} </ion-label>
+                                    <ion-label color="secondary"> {{status.peripheral.gpio[23].name}} </ion-label>
+                                    <ion-toggle color="secondary" [(disabled)]="status.peripheral.gpio[23].modeIN" [(ngModel)]="status.peripheral.gpio[23].value"
+                                        (ionChange)="changeGpioValue(status.peripheral.gpio[23].pin)"></ion-toggle>
+                                </ion-item>
+                            </ion-col>
+                            <ion-col col-6>
+                                <ion-item>
+                                    <ion-checkbox color="woman" [(ngModel)]="status.peripheral.gpio[24].modeIN" (ionChange)="changeGpiomodeIN($event,status.peripheral.gpio[24].pin)"></ion-checkbox>
+                                    <ion-label color="woman"> {{status.peripheral.gpio[24].pin}} </ion-label>
+                                    <ion-label color="woman"> {{status.peripheral.gpio[24].name}} </ion-label>
+                                    <ion-toggle color="woman" [(disabled)]="status.peripheral.gpio[24].modeIN" [(ngModel)]="status.peripheral.gpio[24].value"
+                                        (ionChange)="changeGpioValue(status.peripheral.gpio[24].pin)"></ion-toggle>
+                                </ion-item>
+                            </ion-col>
+                        </ion-row>
+
+                        <ion-row>
+                            <ion-col col-6>
+                                <ion-item>
+                                    <ion-checkbox color="secondary" disabled="true" [(ngModel)]="status.peripheral.gpio[25].modeIN" (ionChange)="changeGpiomodeIN($event,status.peripheral.gpio[25].pin)"></ion-checkbox>
+                                    <ion-label color="secondary"> {{status.peripheral.gpio[25].pin}} </ion-label>
+                                    <ion-label color="secondary"> {{status.peripheral.gpio[25].name}} </ion-label>
+                                    <ion-toggle color="secondary" disabled="true" [(ngModel)]="status.peripheral.gpio[25].value" (ionChange)="changeGpioValue(status.peripheral.gpio[25].pin)"></ion-toggle>
+                                </ion-item>
+                            </ion-col>
+                            <ion-col col-6>
+                                <ion-item>
+                                    <ion-checkbox color="woman" [(ngModel)]="status.peripheral.gpio[26].modeIN" (ionChange)="changeGpiomodeIN($event,status.peripheral.gpio[26].pin)"></ion-checkbox>
+                                    <ion-label color="woman"> {{status.peripheral.gpio[26].pin}} </ion-label>
+                                    <ion-label color="woman"> {{status.peripheral.gpio[26].name}} </ion-label>
+                                    <ion-toggle color="woman" [(disabled)]="status.peripheral.gpio[26].modeIN" [(ngModel)]="status.peripheral.gpio[26].value"
+                                        (ionChange)="changeGpioValue(status.peripheral.gpio[26].pin)"></ion-toggle>
+                                </ion-item>
+                            </ion-col>
+                        </ion-row>
+
+                        <ion-row>
+                            <ion-col col-6>
+                                <ion-item>
+                                    <ion-checkbox color="secondary" [(ngModel)]="status.peripheral.gpio[27].modeIN" (ionChange)="changeGpiomodeIN($event,status.peripheral.gpio[27].pin)"></ion-checkbox>
+                                    <ion-label color="secondary"> {{status.peripheral.gpio[27].pin}} </ion-label>
+                                    <ion-label color="secondary"> {{status.peripheral.gpio[27].name}} </ion-label>
+                                    <ion-toggle color="secondary" [(disabled)]="status.peripheral.gpio[27].modeIN" [(ngModel)]="status.peripheral.gpio[27].value"
+                                        (ionChange)="changeGpioValue(status.peripheral.gpio[27].pin)"></ion-toggle>
+                                </ion-item>
+                            </ion-col>
+                            <ion-col col-6>
+                                <ion-item>
+                                    <ion-checkbox color="woman" [(ngModel)]="status.peripheral.gpio[28].modeIN" (ionChange)="changeGpiomodeIN($event,status.peripheral.gpio[28].pin)"></ion-checkbox>
+                                    <ion-label color="woman"> {{status.peripheral.gpio[28].pin}} </ion-label>
+                                    <ion-label color="woman"> {{status.peripheral.gpio[28].name}} </ion-label>
+                                    <ion-toggle color="woman" [(disabled)]="status.peripheral.gpio[28].modeIN" [(ngModel)]="status.peripheral.gpio[28].value"
+                                        (ionChange)="changeGpioValue(status.peripheral.gpio[28].pin)"></ion-toggle>
+                                </ion-item>
+                            </ion-col>
+                        </ion-row>
+
+                        <ion-row>
+                            <ion-col col-6>
+                                <ion-item>
+                                    <ion-checkbox color="secondary" [(ngModel)]="status.peripheral.gpio[29].modeIN" (ionChange)="changeGpiomodeIN($event,status.peripheral.gpio[29].pin)"></ion-checkbox>
+                                    <ion-label color="secondary"> {{status.peripheral.gpio[29].pin}} </ion-label>
+                                    <ion-label color="secondary"> {{status.peripheral.gpio[29].name}} </ion-label>
+                                    <ion-toggle color="secondary" [(disabled)]="status.peripheral.gpio[29].modeIN" [(ngModel)]="status.peripheral.gpio[29].value"
+                                        (ionChange)="changeGpioValue(status.peripheral.gpio[29].pin)"></ion-toggle>
+                                </ion-item>
+                            </ion-col>
+                            <ion-col col-6>
+                                <ion-item>
+                                    <ion-checkbox color="woman" disabled="true" [(ngModel)]="status.peripheral.gpio[30].modeIN" (ionChange)="changeGpiomodeIN($event,status.peripheral.gpio[30].pin)"></ion-checkbox>
+                                    <ion-label color="woman"> {{status.peripheral.gpio[30].pin}} </ion-label>
+                                    <ion-label color="woman"> {{status.peripheral.gpio[30].name}} </ion-label>
+                                    <ion-toggle color="woman" disabled="true" [(ngModel)]="status.peripheral.gpio[30].value" (ionChange)="changeGpioValue(status.peripheral.gpio[30].pin)"></ion-toggle>
+                                </ion-item>
+                            </ion-col>
+                        </ion-row>
+
+                        <ion-row>
+                            <ion-col col-6>
+                                <ion-item>
+                                    <ion-checkbox color="secondary" [(ngModel)]="status.peripheral.gpio[31].modeIN" (ionChange)="changeGpiomodeIN($event,status.peripheral.gpio[31].pin)"></ion-checkbox>
+                                    <ion-label color="secondary"> {{status.peripheral.gpio[31].pin}} </ion-label>
+                                    <ion-label color="secondary"> {{status.peripheral.gpio[31].name}} </ion-label>
+                                    <ion-toggle color="secondary" [(disabled)]="status.peripheral.gpio[31].modeIN" [(ngModel)]="status.peripheral.gpio[31].value"
+                                        (ionChange)="changeGpioValue(status.peripheral.gpio[31].pin)"></ion-toggle>
+                                </ion-item>
+                            </ion-col>
+                            <ion-col col-6>
+                                <ion-item>
+                                    <ion-checkbox color="woman" [(ngModel)]="status.peripheral.gpio[32].modeIN" (ionChange)="changeGpiomodeIN($event,status.peripheral.gpio[32].pin)"></ion-checkbox>
+                                    <ion-label color="woman"> {{status.peripheral.gpio[32].pin}} </ion-label>
+                                    <ion-label color="woman"> {{status.peripheral.gpio[32].name}} </ion-label>
+                                    <ion-toggle color="primary" [(disabled)]="status.peripheral.gpio[32].modeIN" [(ngModel)]="status.peripheral.gpio[32].value"
+                                        (ionChange)="changeGpioValue(status.peripheral.gpio[32].pin)"></ion-toggle>
+                                </ion-item>
+                            </ion-col>
+                        </ion-row>
+
+                        <ion-row>
+                            <ion-col col-6>
+                                <ion-item>
+                                    <ion-checkbox color="secondary" [(ngModel)]="status.peripheral.gpio[33].modeIN" (ionChange)="changeGpiomodeIN($event,status.peripheral.gpio[33].pin)"></ion-checkbox>
+                                    <ion-label color="secondary"> {{status.peripheral.gpio[33].pin}} </ion-label>
+                                    <ion-label color="secondary"> {{status.peripheral.gpio[33].name}} </ion-label>
+                                    <ion-toggle color="secondary" [(disabled)]="status.peripheral.gpio[33].modeIN" [(ngModel)]="status.peripheral.gpio[33].value"
+                                        (ionChange)="changeGpioValue(status.peripheral.gpio[33].pin)"></ion-toggle>
+                                </ion-item>
+                            </ion-col>
+                            <ion-col col-6>
+                                <ion-item>
+                                    <ion-checkbox color="woman" disabled="true" [(ngModel)]="status.peripheral.gpio[34].modeIN" (ionChange)="changeGpiomodeIN($event,status.peripheral.gpio[34].pin)"></ion-checkbox>
+                                    <ion-label color="woman"> {{status.peripheral.gpio[34].pin}} </ion-label>
+                                    <ion-label color="woman"> {{status.peripheral.gpio[34].name}} </ion-label>
+                                    <ion-toggle color="woman" disabled="true" [(ngModel)]="status.peripheral.gpio[34].value" (ionChange)="changeGpioValue(status.peripheral.gpio[34].pin)"></ion-toggle>
+                                </ion-item>
+                            </ion-col>
+                        </ion-row>
+
+                        <ion-row>
+                            <ion-col col-6>
+                                <ion-item>
+                                    <ion-checkbox color="secondary" [(ngModel)]="status.peripheral.gpio[35].modeIN" (ionChange)="changeGpiomodeIN($event,status.peripheral.gpio[35].pin)"></ion-checkbox>
+                                    <ion-label color="secondary"> {{status.peripheral.gpio[35].pin}} </ion-label>
+                                    <ion-label color="secondary"> {{status.peripheral.gpio[35].name}} </ion-label>
+                                    <ion-toggle color="secondary" [(disabled)]="status.peripheral.gpio[35].modeIN" [(ngModel)]="status.peripheral.gpio[35].value"
+                                        (ionChange)="changeGpioValue(status.peripheral.gpio[35].pin)"></ion-toggle>
+                                </ion-item>
+                            </ion-col>
+                            <ion-col col-6>
+                                <ion-item>
+                                    <ion-checkbox color="woman" [(ngModel)]="status.peripheral.gpio[36].modeIN" (ionChange)="changeGpiomodeIN($event,status.peripheral.gpio[36].pin)"></ion-checkbox>
+                                    <ion-label color="woman"> {{status.peripheral.gpio[36].pin}} </ion-label>
+                                    <ion-label color="woman"> {{status.peripheral.gpio[36].name}} </ion-label>
+                                    <ion-toggle color="woman" [(disabled)]="status.peripheral.gpio[36].modeIN" [(ngModel)]="status.peripheral.gpio[36].value"
+                                        (ionChange)="changeGpioValue(status.peripheral.gpio[36].pin)"></ion-toggle>
+                                </ion-item>
+                            </ion-col>
+                        </ion-row>
+
+                        <ion-row>
+                            <ion-col col-6>
+                                <ion-item>
+                                    <ion-checkbox color="secondary" [(ngModel)]="status.peripheral.gpio[37].modeIN" (ionChange)="changeGpiomodeIN($event,status.peripheral.gpio[37].pin)"></ion-checkbox>
+                                    <ion-label color="secondary"> {{status.peripheral.gpio[37].pin}} </ion-label>
+                                    <ion-label color="secondary"> {{status.peripheral.gpio[37].name}} </ion-label>
+                                    <ion-toggle color="secondary" [(disabled)]="status.peripheral.gpio[37].modeIN" [(ngModel)]="status.peripheral.gpio[37].value"
+                                        (ionChange)="changeGpioValue(status.peripheral.gpio[37].pin)"></ion-toggle>
+                                </ion-item>
+                            </ion-col>
+                            <ion-col col-6>
+                                <ion-item>
+                                    <ion-checkbox color="woman" [(ngModel)]="status.peripheral.gpio[38].modeIN" (ionChange)="changeGpiomodeIN($event,status.peripheral.gpio[38].pin)"></ion-checkbox>
+                                    <ion-label color="woman"> {{status.peripheral.gpio[38].pin}} </ion-label>
+                                    <ion-label color="woman"> {{status.peripheral.gpio[38].name}} </ion-label>
+                                    <ion-toggle color="woman" [(disabled)]="status.peripheral.gpio[38].modeIN" [(ngModel)]="status.peripheral.gpio[38].value"
+                                        (ionChange)="changeGpioValue(status.peripheral.gpio[38].pin)"></ion-toggle>
+                                </ion-item>
+                            </ion-col>
+                        </ion-row>
+
+                        <ion-row>
+                            <ion-col col-6>
+                                <ion-item>
+                                    <ion-checkbox color="secondary" disabled="true" [(ngModel)]="status.peripheral.gpio[39].modeIN" (ionChange)="changeGpiomodeIN($event,status.peripheral.gpio[39].pin)"></ion-checkbox>
+                                    <ion-label color="secondary"> {{status.peripheral.gpio[39].pin}} </ion-label>
+                                    <ion-label color="secondary"> {{status.peripheral.gpio[39].name}} </ion-label>
+                                    <ion-toggle color="secondary" disabled="true" [(ngModel)]="status.peripheral.gpio[39].value" (ionChange)="changeGpioValue(status.peripheral.gpio[39].pin)"></ion-toggle>
+                                </ion-item>
+                            </ion-col>
+                            <ion-col col-6>
+                                <ion-item>
+                                    <ion-checkbox color="woman" [(ngModel)]="status.peripheral.gpio[40].modeIN" (ionChange)="changeGpiomodeIN($event,status.peripheral.gpio[40].pin)"></ion-checkbox>
+                                    <ion-label color="woman"> {{status.peripheral.gpio[40].pin}} </ion-label>
+                                    <ion-label color="woman"> {{status.peripheral.gpio[40].name}} </ion-label>
+                                    <ion-toggle color="woman" [(disabled)]="status.peripheral.gpio[40].modeIN" [(ngModel)]="status.peripheral.gpio[40].value"
+                                        (ionChange)="changeGpioValue(status.peripheral.gpio[40].pin)"></ion-toggle>
+                                </ion-item>
+                            </ion-col>
+                        </ion-row>
+
+                    </ion-grid>
+                </ion-slide>
+                <ion-slide>
+                    <h3>Raspberry Pi GPIO </h3>
+                    <div id="gpio_pins">
+                        <ul>
+                            <li>
+                                <div class="pins" id="pin01">
+                                    <span id="o"></span>
+                                </div>
+                                <div class="pins pin-red" id="pin02">
+                                    <span id="o"></span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="pins pin-blue" id="pin03">
+                                    <span id="o"></span>
+                                </div>
+                                <div class="pins pin-red" id="pin04">
+                                    <span id="o"></span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="pins pin-blue" id="pin05">
+                                    <span id="o"></span>
+                                </div>
+                                <div class="pins pin-black" id="pin06">
+                                    <span id="o"></span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="pins pin-green" id="pin07">
+                                    <span id="o"></span>
+                                </div>
+                                <div class="pins pin-orange" id="pin08">
+                                    <span id="o"></span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="pins pin-black" id="pin09">
+                                    <span id="o"></span>
+                                </div>
+                                <div class="pins pin-orange" id="pin10">
+                                    <span id="o"></span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="pins pin-green" id="pin11">
+                                    <span id="o"></span>
+                                </div>
+                                <div class="pins pin-green" id="pin12">
+                                    <span id="o"></span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="pins pin-green" id="pin13">
+                                    <span id="o"></span>
+                                </div>
+                                <div class="pins pin-black" id="pin14">
+                                    <span id="o"></span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="pins pin-green" id="pin15">
+                                    <span id="o"></span>
+                                </div>
+                                <div class="pins pin-green" id="pin16">
+                                    <span id="o"></span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="pins pin-darkred" id="pin17">
+                                    <span id="o"></span>
+                                </div>
+                                <div class="pins pin-green" id="pin18">
+                                    <span id="o"></span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="pins pin-purple" id="pin19">
+                                    <span id="o"></span>
+                                </div>
+                                <div class="pins pin-black" id="pin20">
+                                    <span id="o"></span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="pins pin-purple" id="pin21">
+                                    <span id="o"></span>
+                                </div>
+                                <div class="pins pin-green" id="pin22">
+                                    <span id="o"></span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="pins pin-purple" id="pin23">
+                                    <span id="o"></span>
+                                </div>
+                                <div class="pins pin-purple" id="pin24">
+                                    <span id="o"></span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="pins pin-black" id="pin25">
+                                    <span id="o"></span>
+                                </div>
+                                <div class="pins pin-purple" id="pin26">
+                                    <span id="o"></span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="pins pin-yellow" id="pin27">
+                                    <span id="o"></span>
+                                </div>
+                                <div class="pins pin-yellow" id="pin28">
+                                    <span id="o"></span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="pins pin-green" id="pin29">
+                                    <span id="o"></span>
+                                </div>
+                                <div class="pins pin-black" id="pin30">
+                                    <span id="o"></span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="pins pin-green" id="pin31">
+                                    <span id="o"></span>
+                                </div>
+                                <div class="pins pin-green" id="pin32">
+                                    <span id="o"></span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="pins pin-green" id="pin33">
+                                    <span id="o"></span>
+                                </div>
+                                <div class="pins pin-black" id="pin34">
+                                    <span id="o"></span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="pins pin-green" id="pin35">
+                                    <span id="o"></span>
+                                </div>
+                                <div class="pins pin-green" id="pin36">
+                                    <span id="o"></span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="pins pin-green" id="pin37">
+                                    <span id="o"></span>
+                                </div>
+                                <div class="pins pin-green" id="pin38">
+                                    <span id="o"></span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="pins pin-black" id="pin39">
+                                    <span id="o"></span>
+                                </div>
+                                <div class="pins pin-green" id="pin40">
+                                    <span id="o"></span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </ion-slide>
+            </ion-slides>
+        </div>
+        <div *ngSwitchCase="'basic'">
+            <ion-list>
+                <ion-item>
+                    <ion-avatar item-left>
+                        <img src="assets/img/Home-96.png">
+                    </ion-avatar>
+                    <h2>Hostname</h2>
+                    <h3 style="color: #04B404;">{{status.basic.hostname}}</h3>
+                </ion-item>
+
+                <ion-item>
+                    <ion-avatar item-left>
+                        <img src="assets/img/kernel-80.png">
+                    </ion-avatar>
+                    <h2>Kernel Version</h2>
+                    <h3 style="color: #04B404;">{{status.basic.kernel_version}}</h3>
+                </ion-item>
+
+                <ion-item>
+                    <ion-avatar item-left>
+                        <img src="assets/img/machine.png">
+                    </ion-avatar>
+                    <h2>Machine</h2>
+                    <h3 style="color: #04B404;">{{status.basic.machine}}</h3>
+                </ion-item>
+
+                <ion-item>
+                    <ion-avatar item-left>
+                        <img src="assets/img/distor.png">
+                    </ion-avatar>
+                    <h2>Distor</h2>
+                    <h3 style="color: #04B404;">{{status.basic.distro_name}}</h3>
+                </ion-item>
+
+                <ion-item>
+                    <ion-avatar item-left>
+                        <img src="assets/img/date.png">
+                    </ion-avatar>
+                    <h2>Date</h2>
+                    <h3 style="color: #04B404;">{{status.basic.date}}</h3>
+                </ion-item>
+
+                <ion-item>
+                    <ion-avatar item-left>
+                        <img src="assets/img/time.png">
+                    </ion-avatar>
+                    <h2>Time Zone</h2>
+                    <h3 style="color: #04B404;">{{status.geo.time_zone}}</h3>
+                </ion-item>
+
+                <ion-item>
+                    <ion-avatar item-left>
+                        <img src="assets/img/voltage.png">
+                    </ion-avatar>
+                    <h2>Voltage</h2>
+                    <h3 style="color: #04B404;">{{status.basic.voltage}}</h3>
+                </ion-item>
+
+                <ion-item>
+                    <ion-avatar item-left>
+                        <img src="assets/img/district.png">
+                    </ion-avatar>
+                    <h2>District</h2>
+                    <h3 style="color: #04B404;">{{status.geo.city}}</h3>
+                </ion-item>
+
+                <ion-item>
+                    <ion-avatar item-left>
+                        <img src="assets/img/city.png">
+                    </ion-avatar>
+                    <h2>City</h2>
+                    <h3 style="color: #04B404;">{{status.geo.region_name}}</h3>
+                </ion-item>
+
+                <ion-item>
+                    <ion-avatar item-left>
+                        <img src="assets/img/country.png">
+                    </ion-avatar>
+                    <h2>Country</h2>
+                    <h3 style="color: #04B404;">{{status.geo.country_name}}</h3>
+                </ion-item>
+
+                <ion-item>
+                    <ion-avatar item-left>
+                        <img src="assets/img/zipcode.png">
+                    </ion-avatar>
+                    <h2>Zip Code</h2>
+                    <h3 style="color: #04B404;">{{status.geo.zip_code}}</h3>
+                </ion-item>
+
+                <ion-item>
+                    <ion-avatar item-left>
+                        <img src="assets/img/latitude.png">
+                    </ion-avatar>
+                    <h2>Latitude</h2>
+                    <h3 style="color: #04B404;">{{status.geo.latitude}}</h3>
+                </ion-item>
+
+                <ion-item>
+                    <ion-avatar item-left>
+                        <img src="assets/img/longitude.png">
+                    </ion-avatar>
+                    <h2>Longitude</h2>
+                    <h3 style="color: #04B404;">{{status.geo.longitude}}</h3>
+                </ion-item>
+            </ion-list>
+        </div>
+        <div *ngSwitchCase="'physical'">
+            <ion-card class="card-ram " responsive-sm>
+                <ion-card-header class="title-c-color">
+                    Random Access Memory (RAM)
+
+                </ion-card-header>
+                <ion-card-content>
+                    <ion-list>
+                        <ion-item>
+                            <progress class="unique1" value="{{status.physical.ram.used}}" max="{{status.physical.ram.total}}" data-label="used:" data-foot="MB"></progress>
+                        </ion-item>
+                        <ion-item>Total : {{status.physical.ram.total}}</ion-item>
+                        <ion-item>Used : {{status.physical.ram.used}}</ion-item>
+                        <ion-item>Free : {{status.physical.ram.free}}</ion-item>
+                        <ion-item>Cached : {{status.physical.ram.cached}}</ion-item>
+                        <ion-item>Shared : {{status.physical.ram.shared}}</ion-item>
+                        <ion-item>Buffers : {{status.physical.ram.buffers}}</ion-item>
+                    </ion-list>
+                </ion-card-content>
+            </ion-card>
+
+            <ion-card class="card " responsive-sm>
+                <ion-card-header class="title-c-color">
+                    Storage
+                </ion-card-header>
+                <ion-list>
+                    <ion-item>
+                        <progress class="unique1" value="{{status.physical.harddisk.used}}" max="{{status.physical.harddisk.size}}" data-label="used:"
+                            data-foot="MB"></progress>
+                    </ion-item>
+                    <ion-item>Total : {{status.physical.harddisk.size}}</ion-item>
+                    <ion-item>Used : {{status.physical.harddisk.used}}</ion-item>
+                    <ion-item>Avail : {{status.physical.harddisk.avail}}</ion-item>
+                </ion-list>
+            </ion-card>
+
+            <ion-card class="card " responsive-sm>
+
+                <ion-card-header class="title-c-color">
+                    Central Processing Unit (CPU)
+                </ion-card-header>
+                <ion-list>
+                    <ion-item>
+                        <progress class="unique1" value="{{100-status.physical.cpu.cpu_usage.id | number:'.0-0'}}" max="100" data-label="used:" data-foot="%"></progress>
+                    </ion-item>
+
+                    <ion-item>current : {{status.physical.cpu.current}}</ion-item>
+                    <ion-item>max : {{status.physical.cpu.max}}</ion-item>
+
+
+                </ion-list>
+            </ion-card>
+        </div>
+        <div *ngSwitchCase="'network'">
+            <ion-list>
+                <ion-list-header>
+                    Deteils
+                </ion-list-header>
+
+                <ion-item>
+                    <ion-avatar item-left>
+                        <img src="assets/img/ip.png">
+                    </ion-avatar>
+                    <h2>IP</h2>
+                    <h3 style="color: #04B404;">{{status.network.eth0.ip}}</h3>
+                </ion-item>
+
+                <ion-item>
+                    <ion-avatar item-left>
+                        <img src="assets/img/iplooback.png">
+                    </ion-avatar>
+                    <h2>IP Looback</h2>
+                    <h3 style="color: #04B404;">{{status.network.eth0.ip_loopback}}</h3>
+                </ion-item>
+
+                <ion-item>
+                    <ion-avatar item-left>
+                        <img src="assets/img/Subnet.png">
+                    </ion-avatar>
+                    <h2>Subnet Mask</h2>
+                    <h3 style="color: #04B404;">{{status.network.eth0.sub}}</h3>
+                </ion-item>
+
+                <ion-item>
+                    <ion-avatar item-left>
+                        <img src="assets/img/mac.png">
+                    </ion-avatar>
+                    <h2>MAC</h2>
+                    <h3 style="color: #04B404;">{{status.network.eth0.mac}}</h3>
+                </ion-item>
+
+                <ion-item>
+                    <ion-avatar item-left>
+                        <img src="assets/img/bcast.png">
+                    </ion-avatar>
+                    <h2>Bcast</h2>
+                    <h3 style="color: #04B404;">{{status.network.eth0.bcast}}</h3>
+                </ion-item>
+
+                <ion-item>
+                    <ion-avatar item-left>
+                        <img src="assets/img/Inet6g.png">
+                    </ion-avatar>
+                    <h2>IP Inet6 Global</h2>
+                    <h3 style="color: #04B404;">{{status.network.eth0.inet6_global}}</h3>
+                </ion-item>
+
+                <ion-item>
+                    <ion-avatar item-left>
+                        <img src="assets/img/Inet6.png">
+                    </ion-avatar>
+                    <h2>IP Inet6</h2>
+                    <h3 style="color: #04B404;">{{status.network.eth0.inet6_link}}</h3>
+                </ion-item>
+
+                <ion-item>RX Bytes : {{status.network.eth0.rx_bytes}}</ion-item>
+                <ion-item>RX Packet : {{status.network.eth0.rx_packet}}</ion-item>
+                <ion-item>TX Bytes : {{status.network.eth0.tx_bytes}}</ion-item>
+                <ion-item>TX Packet : {{status.network.eth0.tx_packet}}</ion-item>
+
+            </ion-list>
+        </div>
+
+    </div>
+
+
+
+
+    <ion-fab right bottom>
+        <button ion-fab color="dark"><ion-icon name="arrow-dropleft"></ion-icon></button>
+        <ion-fab-list side="left">
+            <button ion-fab (click)="gotoSettingnotification()"><ion-icon name="alarm"></ion-icon></button>
+            <button ion-fab (click)="gotoChart()"><ion-icon name="stats"></ion-icon></button>
+            <!--<button ion-fab><ion-icon name="git-compare"></ion-icon></button>-->
+        </ion-fab-list>
+    </ion-fab>
+</ion-content>

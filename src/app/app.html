@@ -1,0 +1,23 @@
+<ion-menu [content]="content">
+
+    <!-- The side menu title -->
+    <ion-header>
+        <ion-toolbar color="primary">
+            <ion-title>
+                <ion-icon name="menu"></ion-icon> Menu</ion-title>
+        </ion-toolbar>
+    </ion-header>
+    <ion-content>
+        <ion-list>
+
+            <button ion-item *ngFor="let p of pages" (click)="openPage(p)">
+        {{p.title}}
+      </button>
+            <button ion-item (click)="logout()">
+        <i class="fa fa-sign-out" aria-hidden="true"></i> Logout
+      </button>
+        </ion-list>
+    </ion-content>
+</ion-menu>
+<!--=============================================================-->
+<ion-nav #content [root]="rootPage"></ion-nav>
