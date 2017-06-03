@@ -62,7 +62,7 @@
                         <font face="verdana" font size="4" color="#08088A">UPTIME : {{status.basic.date}}</font>
                     </ion-col>
                 </ion-row>
-                <ion-grid wrap>
+                <!--<ion-grid wrap>
                     <ion-row responsive-sm>
                         <ion-col>
                             <ion-row class="center">
@@ -142,47 +142,226 @@
                             <font size="2" color="red">Total : {{status.physical.harddisk.size}} GB</font>
                         </ion-col>
                     </ion-row>
+                </ion-grid>-->
+                                <ion-grid wrap>
+                    <ion-row >
+                        <ion-col >
+                            <ion-row class="center">
+                                <font size="3" color="#000066">Memory</font>
+                            </ion-row>
+                            <br>
+                            <ion-row>
+                                <div class="c100 p{{status.physical.ram.used/status.physical.ram.total*100 | number:'.0-0'}} center">
+                                    <span>{{status.physical.ram.used/status.physical.ram.total | percent: '.0-2' }}</span>
+                                    <div class="slice">
+                                        <div class="bar"></div>
+                                        <div class="fill"></div>
+                                    </div>
+                                </div>
+                            </ion-row>
+                            <br>
+                            
+                            <ion-row > 
+                            
+                            <table  align="center">
+                                <font size="2" color="#000066">
+                             <tr >
+                             <td align="left"> Free 
+                             </td>
+                             <td align="left"> : {{status.physical.ram.free}}</td>
+    
+                             </tr>
+                            <tr >
+                                <td align="left">
+                                    Buffers 
+                                </td>
+                            <td align="left">: {{status.physical.ram.buffers}}</td>
+   
+                            </tr>
+
+                            <tr >
+                                <td align="left">
+                                    Cached 
+                                </td>
+                            <td align="left">: {{status.physical.ram.cached}}</td>
+   
+                            </tr>
+
+                            <tr >
+                                <td align="left">
+                                    Shared 
+                                </td>
+                            <td align="left">: {{status.physical.ram.shared}}</td>
+   
+                            </tr>
+
+                            <tr >
+                                <td align="left">
+                                    Total 
+                                </td>
+                            <td align="left">: {{status.physical.ram.total}}</td>
+   
+                            </tr>
+                            </font>
+                            </table>
+                         
+                        
+                         </ion-row>
+                         
+
+                        </ion-col>
+
+                        <ion-col >
+                            <ion-row class="center">
+                                <font size="3" color="#000066">Progress</font>
+                            </ion-row>
+                            <br>
+                            <ion-row >
+                                <div class="c100 p{{100-status.physical.cpu.cpu_usage.id | number:'.0-0'}} green center">
+                                    <span>{{100-status.physical.cpu.cpu_usage.id | number:'.0-2'}}%</span>
+                                    <div class="slice">
+                                        <div class="bar"></div>
+                                        <div class="fill"></div>
+                                    </div>
+                                </div>
+                            </ion-row>
+                             <br>
+                            <ion-row> 
+                                
+                            
+                            <table align="center">
+                                <font size="2" color="#000066">
+                             <tr >
+                             <td align="left">
+                                 
+                                    Max
+                                
+                            </td>
+                             <td align="left">: {{status.physical.cpu.max}}</td>
+    
+                             </tr>
+                            <tr >
+                                <td align="left">
+                                    Current
+                                </td>
+                            <td align="left">: {{status.physical.cpu.current}}</td>
+   
+                            </tr>
+                                </font>
+                            </table>
+                           
+                          </ion-row>
+                            
+                        </ion-col>
+
+                        <ion-col  (click)="presentActionSheet()">
+                            <ion-row class="center">
+                                <font size="3" color="#000066">Storage</font>
+                            </ion-row>
+                            <ion-row class="center">
+                                <div class="col-xs-4 col-md-3 box-circle">
+                                <div class="progress-circle progress-{{status.physical.harddisk.use_percent | number:'.0-0'}}">
+                                    <span>{{status.physical.harddisk.use_percent|number:'.0-2'}}</span>
+                                </div>
+                            </div>
+                            </ion-row>
+                             <br>
+                            <ion-row> 
+
+                                     <table align="center">
+                                <font size="2" color="#000066">
+                             <tr >
+                             <td align="left">
+                                 
+                                    Free
+                                
+                            </td>
+                             <td align="left">: {{status.physical.harddisk.avail}} MB</td>
+    
+                             </tr>
+                            <tr >
+                                <td align="left">
+                                    Used
+                                </td>
+                            <td align="left">: {{status.physical.harddisk.used|number}} GB</td>
+   
+                            </tr>
+                            <tr >
+                                <td align="left">
+                                    Total
+                                </td>
+                            <td align="left">: {{status.physical.harddisk.size}} GB</td>
+   
+                            </tr>
+                                </font>
+                            </table>
+                            
+                          
+                            </ion-row>   
+                        </ion-col>
+                    </ion-row>
                 </ion-grid>
             </ion-grid>
 
             <div class="pic center" style="position:relative">
-                <ion-card style="width:95%">
 
-                    <ion-card-content>
-                        <ion-grid wrap responsive-sm>
-                            <ion-row>
-                                <ion-col width-33>
-                                    <ion-icon name="home"></ion-icon>
-                                </ion-col>
-                                <ion-col width-33>
-                                </ion-col>
-                                <ion-col width-33>
-                                    <ion-icon name="globe"></ion-icon>
-                                </ion-col>
-                            </ion-row>
-                            <ion-row>
-                                <ion-col width-10></ion-col>
-                                <ion-col>Private IP : {{status.network.eth0.ip}}</ion-col>
-                                <ion-col width-10></ion-col>
-                                <ion-col>Public IP : {{status.geo.ip}}</ion-col>
-                                <ion-col width-10></ion-col>
-                            </ion-row>
-                            <ion-row>
-                                <ion-col width-33>Packet</ion-col>
-                                <ion-col width-33><i class="fa fa-download" aria-hidden="true"></i> {{status.network.eth0.rx_packet}}
-                                </ion-col>
-                                <ion-col width-33><i class="fa fa-upload" aria-hidden="true"></i> {{status.network.eth0.tx_packet}}
-                                </ion-col>
-                            </ion-row>
-                            <ion-row>
-                                <ion-col width-33> Data</ion-col>
-                                <ion-col width-33><i class="fa fa-download" aria-hidden="true"></i> {{status.network.eth0.rx_bytes}} </ion-col>
-                                <ion-col width-33><i class="fa fa-upload" aria-hidden="true"></i> {{status.network.eth0.tx_bytes}} </ion-col>
-                            </ion-row>
+                <ion-grid>
+                    <ion-row>
+                        <ion-col align="right"><img src="assets/img/Home-96.png" width="40px" height="40px">
+                        </ion-col>
+                        <ion-col><img src="assets/img/bar.png" width="100%" height="7px"></ion-col>
+                        <ion-col><img src="assets/img/district.png" width="40px" height="40px">
 
-                        </ion-grid>
-                    </ion-card-content>
-                </ion-card>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row>
+                        <ion-col align="center">
+                            <font face="verdana" font size="3" color="#0b6008">Private IP :</font>
+                        </ion-col>
+                        <ion-col align="center">
+                            <font face="verdana" font size="3" color="#0b6008">{{status.network.eth0.ip}}</font>
+                        </ion-col>
+                        <ion-col align="center">
+                            <font face="verdana" font size="3" color="#0b6008">Public IP :</font>
+                        </ion-col>
+                        <ion-col align="center">
+                            <font face="verdana" font size="3" color="#0b6008">{{status.geo.ip}}</font>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row>
+                        <ion-col>
+                            <font face="verdana" font size="3">
+                                Packet</font>
+                        </ion-col>
+                        <ion-col><img src="assets/img/download.png" width="22px" height="22px">
+                            <font face="verdana" font size="3">
+                                RX</font>
+                            <font face="verdana" font size="2" color="#04B404">{{status.network.eth0.rx_packet}}</font>
+                        </ion-col>
+
+                        <ion-col><img src="assets/img/upload.png" width="22px" height="22px">
+                            <font face="verdana" font size="3">
+                                TX</font>
+                            <font face="verdana" font size="2" color="#04B404">{{status.network.eth0.tx_packet}}</font>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row>
+                        <ion-col>
+                            <font face="verdana" font size="3">
+                                Bytes</font>
+                        </ion-col>
+                        <ion-col><img src="assets/img/download.png" width="22px" height="22px">
+                            <font face="verdana" font size="3">
+                                RX</font>
+                            <font face="verdana" font size="2" color="#04B404">{{status.network.eth0.rx_bytes}}</font>
+                        </ion-col>
+                        <ion-col><img src="assets/img/upload.png" width="22px" height="22px">
+                            <font face="verdana" font size="3">
+                                TX</font>
+                            <font face="verdana" font size="2" color="#04B404">{{status.network.eth0.tx_bytes}}</font>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
             </div>
         </div>
         <div *ngSwitchCase="'gpio'">
@@ -894,57 +1073,166 @@
             </ion-list>
         </div>
         <div *ngSwitchCase="'physical'">
-            <ion-card class="card-ram " responsive-sm>
-                <ion-card-header class="title-c-color">
-                    Random Access Memory (RAM)
-
-                </ion-card-header>
-                <ion-card-content>
-                    <ion-list>
-                        <ion-item>
-                            <progress class="unique1" value="{{status.physical.ram.used}}" max="{{status.physical.ram.total}}" data-label="used:" data-foot="MB"></progress>
-                        </ion-item>
-                        <ion-item>Total : {{status.physical.ram.total}}</ion-item>
-                        <ion-item>Used : {{status.physical.ram.used}}</ion-item>
-                        <ion-item>Free : {{status.physical.ram.free}}</ion-item>
-                        <ion-item>Cached : {{status.physical.ram.cached}}</ion-item>
-                        <ion-item>Shared : {{status.physical.ram.shared}}</ion-item>
-                        <ion-item>Buffers : {{status.physical.ram.buffers}}</ion-item>
-                    </ion-list>
-                </ion-card-content>
-            </ion-card>
-
-            <ion-card class="card " responsive-sm>
-                <ion-card-header class="title-c-color">
-                    Storage
-                </ion-card-header>
-                <ion-list>
+            <ion-slides>
+                <ion-slide>
                     <ion-item>
-                        <progress class="unique1" value="{{status.physical.harddisk.used}}" max="{{status.physical.harddisk.size}}" data-label="used:"
-                            data-foot="MB"></progress>
+                        <ion-grid wrap responsive-sm>
+                            <ion-row>
+                                <ion-col align="center">
+                                    <img src="assets/img/cpu2.jpg" width="20px" height="20px"></ion-col>
+                            </ion-row>
+                            <ion-row>
+                                <!--<ion-col col-2>
+                                    <h1>CPU </h1>
+                                </ion-col>-->
+                                <ion-col>
+                                    <progress-bar [progress]="100-status.physical.cpu.cpu_usage.id | number:'.0-2'"></progress-bar>
+                                </ion-col>
+                            </ion-row>
+                        </ion-grid>
                     </ion-item>
-                    <ion-item>Total : {{status.physical.harddisk.size}}</ion-item>
-                    <ion-item>Used : {{status.physical.harddisk.used}}</ion-item>
-                    <ion-item>Avail : {{status.physical.harddisk.avail}}</ion-item>
-                </ion-list>
-            </ion-card>
-
-            <ion-card class="card " responsive-sm>
-
-                <ion-card-header class="title-c-color">
-                    Central Processing Unit (CPU)
-                </ion-card-header>
-                <ion-list>
                     <ion-item>
-                        <progress class="unique1" value="{{100-status.physical.cpu.cpu_usage.id | number:'.0-0'}}" max="100" data-label="used:" data-foot="%"></progress>
+                        <ion-avatar item-left>
+                            <img src="assets/img/cpu.png">
+                        </ion-avatar>
+                        <h2>Current : </h2>
+                        <h3 style="color: #04B404;">{{status.physical.cpu.current}} Hz</h3>
+                    </ion-item>
+                    <ion-item>
+                        <ion-avatar item-left>
+                            <img src="assets/img/ip.png">
+                        </ion-avatar>
+                        <h2>Max :</h2>
+                        <h3 style="color: #04B404;">{{status.physical.cpu.max}} Hz</h3>
+                    </ion-item>
+                    <ion-item>
+                        <ion-grid wrap responsive-sm>
+                            <ion-row>
+                                <ion-col>
+                                    <h3 style="color: #246d19;">running : {{status.physical.cpu.task.running}} </h3>
+                                </ion-col>
+                                <ion-col>
+                                    <h3 style="color: #246d19;">sleeping : {{status.physical.cpu.task.sleeping}}</h3>
+                                </ion-col>
+                                <ion-col>
+                                    <h3 style="color: #246d19;">stopped : {{status.physical.cpu.task.stopped}} </h3>
+                                </ion-col>
+                                <ion-col>
+                                    <h3 style="color: #246d19;">zombie : {{status.physical.cpu.task.zombie}}</h3>
+                                </ion-col>
+                            </ion-row>
+                        </ion-grid>
+                    </ion-item>
+                </ion-slide>
+                <ion-slide>
+                    <ion-item>
+                        <ion-grid wrap responsive-sm>
+                            <ion-row>
+                                <ion-col col-2>
+                                    <h1>RAM </h1>
+                                </ion-col>
+                                <ion-col col-10>
+                                    <progress-bar [progress]="status.physical.ram.used/status.physical.ram.total | percent: '.0-2' "></progress-bar>
+                                </ion-col>
+                            </ion-row>
+                        </ion-grid>
+                    </ion-item>
+                    <ion-item>
+                        <ion-avatar item-left>
+                            <img src="assets/img/ram.png">
+                        </ion-avatar>
+                        <h2>Total :</h2>
+                        <h3 style="color: #04B404;">{{status.physical.ram.total}} MB</h3>
+                    </ion-item>
+                    <ion-item>
+                        <ion-avatar item-left>
+                            <img src="assets/img/ip.png">
+                        </ion-avatar>
+                        <h2>Used :</h2>
+                        <h3 style="color: #04B404;">{{status.physical.ram.used}} MB</h3>
+                    </ion-item>
+                    <ion-item>
+                        <ion-avatar item-left>
+                            <img src="assets/img/ip.png">
+                        </ion-avatar>
+                        <h2>Free : </h2>
+                        <h3 style="color: #04B404;">{{status.physical.ram.free}} MB</h3>
+                    </ion-item>
+                    <ion-item>
+                        <ion-avatar item-left>
+                            <img src="assets/img/ip.png">
+                        </ion-avatar>
+                        <h2>Buffers : </h2>
+                        <h3 style="color: #04B404;">{{status.physical.ram.buffers}} MB</h3>
+                    </ion-item>
+                    <ion-item>
+                        <ion-avatar item-left>
+                            <img src="assets/img/ip.png">
+                        </ion-avatar>
+                        <h2>Cached :</h2>
+                        <h3 style="color: #04B404;">{{status.physical.ram.cached}} MB</h3>
+                    </ion-item>
+                    <ion-item>
+                        <ion-avatar item-left>
+                            <img src="assets/img/ip.png">
+                        </ion-avatar>
+                        <h2>Shared :</h2>
+                        <h3 style="color: #04B404;">{{status.physical.ram.shared}} MB</h3>
+                    </ion-item>
+                    <ion-item>
+                        <ion-avatar item-left>
+                            <img src="assets/img/ip.png">
+                        </ion-avatar>
+                        <h2>Total :</h2>
+                        <h3 style="color: #04B404;">{{status.physical.ram.total}} MB</h3>
                     </ion-item>
 
-                    <ion-item>current : {{status.physical.cpu.current}}</ion-item>
-                    <ion-item>max : {{status.physical.cpu.max}}</ion-item>
-
-
-                </ion-list>
-            </ion-card>
+                </ion-slide>
+                <ion-slide>
+                    <ion-item>
+                        <ion-grid wrap responsive-sm>
+                            <ion-row>
+                                <ion-col align="center">
+                                    <img src="assets/img/sd.png" width="15px" height="15px"></ion-col>
+                            </ion-row>
+                            <ion-row>
+                                <ion-col>
+                                    <h1>SD Card </h1>
+                                </ion-col>
+                            </ion-row>
+                            <ion-row>
+                                <!--<ion-col col-2>
+                                    <h1>SD Card </h1>
+                                </ion-col>-->
+                                <ion-col>
+                                    <progress-bar [progress]="status.physical.harddisk.use_percent|number:'.0-2'"></progress-bar>
+                                </ion-col>
+                            </ion-row>
+                        </ion-grid>
+                    </ion-item>
+                    <ion-item>
+                        <ion-avatar item-left>
+                            <img src="assets/img/storage.png">
+                        </ion-avatar>
+                        <h2>Total :</h2>
+                        <h3 style="color: #04B404;">{{status.physical.harddisk.size}} GB</h3>
+                    </ion-item>
+                    <ion-item>
+                        <ion-avatar item-left>
+                            <img src="assets/img/ip.png">
+                        </ion-avatar>
+                        <h2>Used :</h2>
+                        <h3 style="color: #04B404;">{{status.physical.harddisk.used}} MB</h3>
+                    </ion-item>
+                    <ion-item>
+                        <ion-avatar item-left>
+                            <img src="assets/img/ip.png">
+                        </ion-avatar>
+                        <h2>Avail : </h2>
+                        <h3 style="color: #04B404;">{{status.physical.harddisk.avail}} MB</h3>
+                    </ion-item>
+                </ion-slide>
+            </ion-slides>
         </div>
         <div *ngSwitchCase="'network'">
             <ion-list>
@@ -1030,7 +1318,7 @@
                             </ion-col>
                             <ion-col><img src="assets/img/upload.png" width="22px" height="22px">
                                 <font face="verdana" font size="3">
-                                    TX </font>
+                                    TX Packet </font>
                                 <font face="verdana" font size="2" color="#04B404">{{status.network.eth0.tx_packet}}</font>
                             </ion-col>
                         </ion-row>
