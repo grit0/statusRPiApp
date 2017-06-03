@@ -9,6 +9,12 @@
                 
             </button>
         </ion-buttons>
+                <ion-buttons end>
+            <button ion-button icon-only (click)="removeAlertAll()">
+                        <ion-icon name="trash"></ion-icon>
+                
+            </button>
+        </ion-buttons>
     </ion-navbar>
 </ion-header>
 
@@ -16,7 +22,7 @@
     <ion-item *ngFor="let item of alert.listAlert">
         <ion-icon name="alert" item-left></ion-icon>
         <h2>{{item.MAC | uppercase}}</h2>
-        <p>{{item.status}} : {{item.value}}</p>
+        <p>{{item.status}} : {{item.value}} %</p>
         <p> {{item.timeago}}</p>
         <button ion-button clear item-right (click)="removeAlert(item)"><ion-icon name="trash"></ion-icon></button>
     </ion-item>

@@ -8,7 +8,8 @@ import { Injectable } from '@angular/core';
 */
 @Injectable()
 export class Alert {
-  listAlert: any = [{time:new Date().getTime() , MAC: "bb:bb:bb:bb:bb", status: "CPU", value: 30 }]
+  // listAlert: any = [{time:new Date().getTime() , MAC: "bb:bb:bb:bb:bb", status: "CPU", value: 30 }]
+  listAlert: any = []
   settingAlert: any;
   count: any;
   constructor() {

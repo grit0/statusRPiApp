@@ -37425,21 +37425,6 @@ progress:before {
   src: url("../assets/fonts/Lato-Regular.ttf");
 }
 
-body,
-span,
-button,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-ion-item,
-ion-title {
-  font-family: 'Lato-Light' !important;
-}
-
 .mar-gin-card {
   padding-top: 10px;
   margin-top: 10px;

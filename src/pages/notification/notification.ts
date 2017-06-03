@@ -35,6 +35,9 @@ export class NotificationPage {
     }
 
   }
+  removeAlertAll() {
+    this.alert.listAlert=[]
+  }
   ionViewWillEnter() {
     for (var value of this.alert.listAlert) {
       // console.log(value.time);

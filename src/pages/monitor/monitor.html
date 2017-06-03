@@ -143,9 +143,9 @@
                         </ion-col>
                     </ion-row>
                 </ion-grid>-->
-                                <ion-grid wrap>
-                    <ion-row >
-                        <ion-col >
+                <ion-grid wrap>
+                    <ion-row>
+                        <ion-col>
                             <ion-row class="center">
                                 <font size="3" color="#000066">Memory</font>
                             </ion-row>
@@ -160,63 +160,63 @@
                                 </div>
                             </ion-row>
                             <br>
-                            
-                            <ion-row > 
-                            
-                            <table  align="center">
-                                <font size="2" color="#000066">
-                             <tr >
-                             <td align="left"> Free 
-                             </td>
-                             <td align="left"> : {{status.physical.ram.free}}</td>
-    
-                             </tr>
-                            <tr >
-                                <td align="left">
-                                    Buffers 
-                                </td>
-                            <td align="left">: {{status.physical.ram.buffers}}</td>
-   
-                            </tr>
 
-                            <tr >
-                                <td align="left">
-                                    Cached 
-                                </td>
-                            <td align="left">: {{status.physical.ram.cached}}</td>
-   
-                            </tr>
+                            <ion-row>
 
-                            <tr >
-                                <td align="left">
-                                    Shared 
-                                </td>
-                            <td align="left">: {{status.physical.ram.shared}}</td>
-   
-                            </tr>
+                                <table align="center">
+                                    <font size="2" color="#000066">
+                                        <tr>
+                                            <td align="left"> Free
+                                            </td>
+                                            <td align="left"> : {{status.physical.ram.free}}</td>
 
-                            <tr >
-                                <td align="left">
-                                    Total 
-                                </td>
-                            <td align="left">: {{status.physical.ram.total}}</td>
-   
-                            </tr>
-                            </font>
-                            </table>
-                         
-                        
-                         </ion-row>
-                         
+                                        </tr>
+                                        <tr>
+                                            <td align="left">
+                                                Buffers
+                                            </td>
+                                            <td align="left">: {{status.physical.ram.buffers}}</td>
+
+                                        </tr>
+
+                                        <tr>
+                                            <td align="left">
+                                                Cached
+                                            </td>
+                                            <td align="left">: {{status.physical.ram.cached}}</td>
+
+                                        </tr>
+
+                                        <tr>
+                                            <td align="left">
+                                                Shared
+                                            </td>
+                                            <td align="left">: {{status.physical.ram.shared}}</td>
+
+                                        </tr>
+
+                                        <tr>
+                                            <td align="left">
+                                                Total
+                                            </td>
+                                            <td align="left">: {{status.physical.ram.total}}</td>
+
+                                        </tr>
+                                    </font>
+                                </table>
+
+
+                            </ion-row>
+
 
                         </ion-col>
 
-                        <ion-col >
+                        <ion-col>
                             <ion-row class="center">
                                 <font size="3" color="#000066">Progress</font>
                             </ion-row>
                             <br>
-                            <ion-row >
+                            <ion-row>
                                 <div class="c100 p{{100-status.physical.cpu.cpu_usage.id | number:'.0-0'}} green center">
                                     <span>{{100-status.physical.cpu.cpu_usage.id | number:'.0-2'}}%</span>
                                     <div class="slice">
@@ -225,79 +225,79 @@
                                     </div>
                                 </div>
                             </ion-row>
-                             <br>
-                            <ion-row> 
-                                
-                            
-                            <table align="center">
-                                <font size="2" color="#000066">
-                             <tr >
-                             <td align="left">
-                                 
-                                    Max
-                                
-                            </td>
-                             <td align="left">: {{status.physical.cpu.max}}</td>
-    
-                             </tr>
-                            <tr >
-                                <td align="left">
-                                    Current
-                                </td>
-                            <td align="left">: {{status.physical.cpu.current}}</td>
-   
-                            </tr>
-                                </font>
-                            </table>
-                           
-                          </ion-row>
-                            
+                            <br>
+                            <ion-row>
+
+
+                                <table align="center">
+                                    <font size="2" color="#000066">
+                                        <tr>
+                                            <td align="left">
+
+                                                Max
+
+                                            </td>
+                                            <td align="left">: {{status.physical.cpu.max}}</td>
+
+                                        </tr>
+                                        <tr>
+                                            <td align="left">
+                                                Current
+                                            </td>
+                                            <td align="left">: {{status.physical.cpu.current}}</td>
+
+                                        </tr>
+                                    </font>
+                                </table>
+
+                            </ion-row>
+
                         </ion-col>
 
-                        <ion-col  (click)="presentActionSheet()">
+                        <ion-col (click)="presentActionSheet()" >
                             <ion-row class="center">
                                 <font size="3" color="#000066">Storage</font>
                             </ion-row>
                             <ion-row class="center">
                                 <div class="col-xs-4 col-md-3 box-circle">
-                                <div class="progress-circle progress-{{status.physical.harddisk.use_percent | number:'.0-0'}}">
-                                    <span>{{status.physical.harddisk.use_percent|number:'.0-2'}}</span>
+                                    <div class="progress-circle progress-{{status.physical.harddisk.use_percent | number:'.0-0'}}">
+                                        <span>{{status.physical.harddisk.use_percent|number:'.0-2'}}</span>
+                                    </div>
                                 </div>
-                            </div>
                             </ion-row>
-                             <br>
-                            <ion-row> 
+                            <br>
+                            <ion-row>
 
-                                     <table align="center">
-                                <font size="2" color="#000066">
-                             <tr >
-                             <td align="left">
-                                 
-                                    Free
-                                
-                            </td>
-                             <td align="left">: {{status.physical.harddisk.avail}} MB</td>
-    
-                             </tr>
-                            <tr >
-                                <td align="left">
-                                    Used
-                                </td>
-                            <td align="left">: {{status.physical.harddisk.used|number}} GB</td>
-   
-                            </tr>
-                            <tr >
-                                <td align="left">
-                                    Total
-                                </td>
-                            <td align="left">: {{status.physical.harddisk.size}} GB</td>
-   
-                            </tr>
-                                </font>
-                            </table>
-                            
-                          
-                            </ion-row>   
+                                <table align="center">
+                                    <font size="2" color="#000066">
+                                        <tr>
+                                            <td align="left">
+
+                                                Free
+
+                                            </td>
+                                            <td align="left">: {{status.physical.harddisk.avail}} MB</td>
+
+                                        </tr>
+                                        <tr>
+                                            <td align="left">
+                                                Used
+                                            </td>
+                                            <td align="left">: {{status.physical.harddisk.used|number}} GB</td>
+
+                                        </tr>
+                                        <tr>
+                                            <td align="left">
+                                                Total
+                                            </td>
+                                            <td align="left">: {{status.physical.harddisk.size}} GB</td>
+
+                                        </tr>
+                                    </font>
+                                </table>
+
+
+                            </ion-row>
                         </ion-col>
                     </ion-row>
                 </ion-grid>
@@ -1100,7 +1100,7 @@
                     </ion-item>
                     <ion-item>
                         <ion-avatar item-left>
-                            <img src="assets/img/ip.png">
+                            <img src="assets/img/cpu.png">
                         </ion-avatar>
                         <h2>Max :</h2>
                         <h3 style="color: #04B404;">{{status.physical.cpu.max}} Hz</h3>
@@ -1146,42 +1146,42 @@
                     </ion-item>
                     <ion-item>
                         <ion-avatar item-left>
-                            <img src="assets/img/ip.png">
+                            <img src="assets/img/ram.png">
                         </ion-avatar>
                         <h2>Used :</h2>
                         <h3 style="color: #04B404;">{{status.physical.ram.used}} MB</h3>
                     </ion-item>
                     <ion-item>
                         <ion-avatar item-left>
-                            <img src="assets/img/ip.png">
+                            <img src="assets/img/ram.png">
                         </ion-avatar>
                         <h2>Free : </h2>
                         <h3 style="color: #04B404;">{{status.physical.ram.free}} MB</h3>
                     </ion-item>
                     <ion-item>
                         <ion-avatar item-left>
-                            <img src="assets/img/ip.png">
+                            <img src="assets/img/ram.png">
                         </ion-avatar>
                         <h2>Buffers : </h2>
                         <h3 style="color: #04B404;">{{status.physical.ram.buffers}} MB</h3>
                     </ion-item>
                     <ion-item>
                         <ion-avatar item-left>
-                            <img src="assets/img/ip.png">
+                            <img src="assets/img/ram.png">
                         </ion-avatar>
                         <h2>Cached :</h2>
                         <h3 style="color: #04B404;">{{status.physical.ram.cached}} MB</h3>
                     </ion-item>
                     <ion-item>
                         <ion-avatar item-left>
-                            <img src="assets/img/ip.png">
+                            <img src="assets/img/ram.png">
                         </ion-avatar>
                         <h2>Shared :</h2>
                         <h3 style="color: #04B404;">{{status.physical.ram.shared}} MB</h3>
                     </ion-item>
                     <ion-item>
                         <ion-avatar item-left>
-                            <img src="assets/img/ip.png">
+                            <img src="assets/img/ram.png">
                         </ion-avatar>
                         <h2>Total :</h2>
                         <h3 style="color: #04B404;">{{status.physical.ram.total}} MB</h3>
@@ -1219,14 +1219,14 @@
                     </ion-item>
                     <ion-item>
                         <ion-avatar item-left>
-                            <img src="assets/img/ip.png">
+                            <img src="assets/img/storage.png">
                         </ion-avatar>
                         <h2>Used :</h2>
                         <h3 style="color: #04B404;">{{status.physical.harddisk.used}} MB</h3>
                     </ion-item>
                     <ion-item>
                         <ion-avatar item-left>
-                            <img src="assets/img/ip.png">
+                            <img src="assets/img/storage.png">
                         </ion-avatar>
                         <h2>Avail : </h2>
                         <h3 style="color: #04B404;">{{status.physical.harddisk.avail}} MB</h3>
@@ -1237,7 +1237,6 @@
         <div *ngSwitchCase="'network'">
             <ion-list>
                 <ion-list-header>
-                    Deteils
                 </ion-list-header>
 
                 <ion-item>
