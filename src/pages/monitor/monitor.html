@@ -1008,10 +1008,37 @@
                     <h3 style="color: #04B404;">{{status.network.eth0.inet6_link}}</h3>
                 </ion-item>
 
-                <ion-item>RX Bytes : {{status.network.eth0.rx_bytes}}</ion-item>
-                <ion-item>RX Packet : {{status.network.eth0.rx_packet}}</ion-item>
+                <ion-item>
+                    <ion-grid wrap responsive-sm>
+                        <ion-row>
+                            <ion-col><img src="assets/img/download.png" width="22px" height="22px">
+                                <font face="verdana" font size="3">
+                                    RX Bytes</font>
+                                <font face="verdana" font size="2" color="#04B404">{{status.network.eth0.rx_bytes}}</font>
+                            </ion-col>
+                            <ion-col><img src="assets/img/upload.png" width="22px" height="22px">
+                                <font face="verdana" font size="3">
+                                    TX Bytes</font>
+                                <font face="verdana" font size="2" color="#04B404">{{status.network.eth0.tx_bytes}}</font>
+                            </ion-col>
+                        </ion-row>
+                        <ion-row>
+                            <ion-col><img src="assets/img/download.png" width="22px" height="22px">
+                                <font face="verdana" font size="3">
+                                    RX Packet</font>
+                                <font face="verdana" font size="2" color="#04B404">{{status.network.eth0.rx_packet}}</font>
+                            </ion-col>
+                            <ion-col><img src="assets/img/upload.png" width="22px" height="22px">
+                                <font face="verdana" font size="3">
+                                    TX </font>
+                                <font face="verdana" font size="2" color="#04B404">{{status.network.eth0.tx_packet}}</font>
+                            </ion-col>
+                        </ion-row>
+                    </ion-grid>
+                </ion-item>
+                <!--<ion-item>RX Packet : {{status.network.eth0.rx_packet}}</ion-item>
                 <ion-item>TX Bytes : {{status.network.eth0.tx_bytes}}</ion-item>
-                <ion-item>TX Packet : {{status.network.eth0.tx_packet}}</ion-item>
+                <ion-item>TX Packet : {{status.network.eth0.tx_packet}}</ion-item>-->
 
             </ion-list>
         </div>
