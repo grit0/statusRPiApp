@@ -213,7 +213,7 @@
 
                         <ion-col>
                             <ion-row class="center">
-                                <font size="3" color="#000066">Progress</font>
+                                <font size="3" color="#000066">CPU usage</font>
                             </ion-row>
                             <br>
                             <ion-row>
@@ -254,7 +254,7 @@
 
                         </ion-col>
 
-                        <ion-col (click)="presentActionSheet()" >
+                        <ion-col (click)="presentActionSheet()">
                             <ion-row class="center">
                                 <font size="3" color="#000066">Storage</font>
                             </ion-row>
@@ -1235,99 +1235,293 @@
             </ion-slides>
         </div>
         <div *ngSwitchCase="'network'">
-            <ion-list>
-                <ion-list-header>
-                </ion-list-header>
+            <ion-slides>
+                <ion-slide>
+                    <ion-list>
+                                               <ion-list-header>
+                           <font face="verdana" font size="4" color="#08088A"> <h1>Ethernet LAN</h1></font>
+                        </ion-list-header>
+                        <ion-item>
+                            <ion-avatar item-left>
+                                <img src="assets/img/ip.png">
+                            </ion-avatar>
+                            <h2>IP</h2>
+                            <h3 style="color: #04B404;">{{status.network.eth0.ip}}</h3>
+                        </ion-item>
 
-                <ion-item>
-                    <ion-avatar item-left>
-                        <img src="assets/img/ip.png">
-                    </ion-avatar>
-                    <h2>IP</h2>
-                    <h3 style="color: #04B404;">{{status.network.eth0.ip}}</h3>
-                </ion-item>
+                        <ion-item>
+                            <ion-avatar item-left>
+                                <img src="assets/img/iplooback.png">
+                            </ion-avatar>
+                            <h2>IP Looback</h2>
+                            <h3 style="color: #04B404;">{{status.network.eth0.ip_loopback}}</h3>
+                        </ion-item>
 
-                <ion-item>
-                    <ion-avatar item-left>
-                        <img src="assets/img/iplooback.png">
-                    </ion-avatar>
-                    <h2>IP Looback</h2>
-                    <h3 style="color: #04B404;">{{status.network.eth0.ip_loopback}}</h3>
-                </ion-item>
+                        <ion-item>
+                            <ion-avatar item-left>
+                                <img src="assets/img/Subnet.png">
+                            </ion-avatar>
+                            <h2>Subnet Mask</h2>
+                            <h3 style="color: #04B404;">{{status.network.eth0.sub}}</h3>
+                        </ion-item>
 
-                <ion-item>
-                    <ion-avatar item-left>
-                        <img src="assets/img/Subnet.png">
-                    </ion-avatar>
-                    <h2>Subnet Mask</h2>
-                    <h3 style="color: #04B404;">{{status.network.eth0.sub}}</h3>
-                </ion-item>
+                        <ion-item>
+                            <ion-avatar item-left>
+                                <img src="assets/img/mac.png">
+                            </ion-avatar>
+                            <h2>MAC</h2>
+                            <h3 style="color: #04B404;">{{status.network.eth0.mac}}</h3>
+                        </ion-item>
 
-                <ion-item>
-                    <ion-avatar item-left>
-                        <img src="assets/img/mac.png">
-                    </ion-avatar>
-                    <h2>MAC</h2>
-                    <h3 style="color: #04B404;">{{status.network.eth0.mac}}</h3>
-                </ion-item>
+                        <ion-item>
+                            <ion-avatar item-left>
+                                <img src="assets/img/bcast.png">
+                            </ion-avatar>
+                            <h2>Bcast</h2>
+                            <h3 style="color: #04B404;">{{status.network.eth0.bcast}}</h3>
+                        </ion-item>
 
-                <ion-item>
-                    <ion-avatar item-left>
-                        <img src="assets/img/bcast.png">
-                    </ion-avatar>
-                    <h2>Bcast</h2>
-                    <h3 style="color: #04B404;">{{status.network.eth0.bcast}}</h3>
-                </ion-item>
+                        <ion-item>
+                            <ion-avatar item-left>
+                                <img src="assets/img/Inet6g.png">
+                            </ion-avatar>
+                            <h2>IP Inet6 Global</h2>
+                            <h3 style="color: #04B404;">{{status.network.eth0.inet6_global}}</h3>
+                        </ion-item>
 
-                <ion-item>
-                    <ion-avatar item-left>
-                        <img src="assets/img/Inet6g.png">
-                    </ion-avatar>
-                    <h2>IP Inet6 Global</h2>
-                    <h3 style="color: #04B404;">{{status.network.eth0.inet6_global}}</h3>
-                </ion-item>
+                        <ion-item>
+                            <ion-avatar item-left>
+                                <img src="assets/img/Inet6.png">
+                            </ion-avatar>
+                            <h2>IP Inet6</h2>
+                            <h3 style="color: #04B404;">{{status.network.eth0.inet6_link}}</h3>
+                        </ion-item>
 
-                <ion-item>
-                    <ion-avatar item-left>
-                        <img src="assets/img/Inet6.png">
-                    </ion-avatar>
-                    <h2>IP Inet6</h2>
-                    <h3 style="color: #04B404;">{{status.network.eth0.inet6_link}}</h3>
-                </ion-item>
+                        <ion-item>
+                            <ion-grid wrap responsive-sm>
+                                <ion-row>
+                                    <ion-col>
+                                        <!--<img src="assets/img/download.png" width="22px" height="22px">-->
+                                        <font face="verdana" font size="3">
+                                            RX Bytes</font>
+                                        <font face="verdana" font size="2" color="#04B404">{{status.network.eth0.rx_bytes}}</font>
+                                    </ion-col>
+                                    <ion-col>
+                                        <!--<img src="assets/img/upload.png" width="22px" height="22px">-->
+                                        <font face="verdana" font size="3">
+                                            TX Bytes</font>
+                                        <font face="verdana" font size="2" color="#04B404">{{status.network.eth0.tx_bytes}}</font>
+                                    </ion-col>
+                                </ion-row>
+                                <ion-row>
+                                    <ion-col>
+                                        <!--<img src="assets/img/download.png" width="22px" height="22px">-->
+                                        <font face="verdana" font size="3">
+                                            RX Packet</font>
+                                        <font face="verdana" font size="2" color="#04B404">{{status.network.eth0.rx_packet}}</font>
+                                    </ion-col>
+                                    <ion-col>
+                                        <!--<img src="assets/img/upload.png" width="22px" height="22px">-->
+                                        <font face="verdana" font size="3">
+                                            TX Packet </font>
+                                        <font face="verdana" font size="2" color="#04B404">{{status.network.eth0.tx_packet}}</font>
+                                    </ion-col>
+                                </ion-row>
 
-                <ion-item>
-                    <ion-grid wrap responsive-sm>
-                        <ion-row>
-                            <ion-col><img src="assets/img/download.png" width="22px" height="22px">
-                                <font face="verdana" font size="3">
-                                    RX Bytes</font>
-                                <font face="verdana" font size="2" color="#04B404">{{status.network.eth0.rx_bytes}}</font>
-                            </ion-col>
-                            <ion-col><img src="assets/img/upload.png" width="22px" height="22px">
-                                <font face="verdana" font size="3">
-                                    TX Bytes</font>
-                                <font face="verdana" font size="2" color="#04B404">{{status.network.eth0.tx_bytes}}</font>
-                            </ion-col>
-                        </ion-row>
-                        <ion-row>
-                            <ion-col><img src="assets/img/download.png" width="22px" height="22px">
-                                <font face="verdana" font size="3">
-                                    RX Packet</font>
-                                <font face="verdana" font size="2" color="#04B404">{{status.network.eth0.rx_packet}}</font>
-                            </ion-col>
-                            <ion-col><img src="assets/img/upload.png" width="22px" height="22px">
-                                <font face="verdana" font size="3">
-                                    TX Packet </font>
-                                <font face="verdana" font size="2" color="#04B404">{{status.network.eth0.tx_packet}}</font>
-                            </ion-col>
-                        </ion-row>
-                    </ion-grid>
-                </ion-item>
-                <!--<ion-item>RX Packet : {{status.network.eth0.rx_packet}}</ion-item>
-                <ion-item>TX Bytes : {{status.network.eth0.tx_bytes}}</ion-item>
-                <ion-item>TX Packet : {{status.network.eth0.tx_packet}}</ion-item>-->
+                            </ion-grid>
+                        </ion-item>
+                    </ion-list>
+                </ion-slide>
+                <ion-slide>
+                    <ion-list>
+                        <ion-list-header>
+                           <font face="verdana" font size="4" color="#08088A"> <h1>Wireless LAN</h1></font>
+                        </ion-list-header>
+                        <ion-item>
+                            <ion-avatar item-left>
+                                <img src="assets/img/ip.png">
+                            </ion-avatar>
+                            <h2>IP</h2>
+                            <h3 style="color: #04B404;">{{status.network.wlan0.ip}}</h3>
+                        </ion-item>
 
-            </ion-list>
+                        <ion-item>
+                            <ion-avatar item-left>
+                                <img src="assets/img/iplooback.png">
+                            </ion-avatar>
+                            <h2>IP Looback</h2>
+                            <h3 style="color: #04B404;">{{status.network.wlan0.ip_loopback}}</h3>
+                        </ion-item>
+
+                        <ion-item>
+                            <ion-avatar item-left>
+                                <img src="assets/img/Subnet.png">
+                            </ion-avatar>
+                            <h2>Subnet Mask</h2>
+                            <h3 style="color: #04B404;">{{status.network.wlan0.sub}}</h3>
+                        </ion-item>
+
+                        <ion-item>
+                            <ion-avatar item-left>
+                                <img src="assets/img/mac.png">
+                            </ion-avatar>
+                            <h2>MAC</h2>
+                            <h3 style="color: #04B404;">{{status.network.wlan0.mac}}</h3>
+                        </ion-item>
+
+                        <ion-item>
+                            <ion-avatar item-left>
+                                <img src="assets/img/bcast.png">
+                            </ion-avatar>
+                            <h2>Bcast</h2>
+                            <h3 style="color: #04B404;">{{status.network.wlan0.bcast}}</h3>
+                        </ion-item>
+
+                        <ion-item>
+                            <ion-avatar item-left>
+                                <img src="assets/img/Inet6g.png">
+                            </ion-avatar>
+                            <h2>IP Inet6 Global</h2>
+                            <h3 style="color: #04B404;">{{status.network.wlan0.inet6_global}}</h3>
+                        </ion-item>
+
+                        <ion-item>
+                            <ion-avatar item-left>
+                                <img src="assets/img/Inet6.png">
+                            </ion-avatar>
+                            <h2>IP Inet6</h2>
+                            <h3 style="color: #04B404;">{{status.network.wlan0.inet6_link}}</h3>
+                        </ion-item>
+
+                        <ion-item>
+                            <ion-grid wrap responsive-sm>
+                                <ion-row>
+                                    <ion-col>
+                                        <!--<img src="assets/img/download.png" width="22px" height="22px">-->
+                                        <font face="verdana" font size="3">
+                                            RX Bytes</font>
+                                        <font face="verdana" font size="2" color="#04B404">{{status.network.wlan0.rx_bytes}}</font>
+                                    </ion-col>
+                                    <ion-col>
+                                        <!--<img src="assets/img/upload.png" width="22px" height="22px">-->
+                                        <font face="verdana" font size="3">
+                                            TX Bytes</font>
+                                        <font face="verdana" font size="2" color="#04B404">{{status.network.wlan0.tx_bytes}}</font>
+                                    </ion-col>
+                                </ion-row>
+                                <ion-row>
+                                    <ion-col>
+                                        <!--<img src="assets/img/download.png" width="22px" height="22px">-->
+                                        <font face="verdana" font size="3">
+                                            RX Packet</font>
+                                        <font face="verdana" font size="2" color="#04B404">{{status.network.wlan0.rx_packet}}</font>
+                                    </ion-col>
+                                    <ion-col>
+                                        <!--<img src="assets/img/upload.png" width="22px" height="22px">-->
+                                        <font face="verdana" font size="3">
+                                            TX Packet </font>
+                                        <font face="verdana" font size="2" color="#04B404">{{status.network.wlan0.tx_packet}}</font>
+                                    </ion-col>
+                                </ion-row>
+                            </ion-grid>
+                        </ion-item>
+                    </ion-list>
+                </ion-slide>
+                <ion-slide> <ion-list>
+                        <ion-list-header>
+                           <font face="verdana" font size="4" color="#08088A"> <h1>Loopback</h1></font>
+                        </ion-list-header>
+                        <ion-item>
+                            <ion-avatar item-left>
+                                <img src="assets/img/ip.png">
+                            </ion-avatar>
+                            <h2>IP</h2>
+                            <h3 style="color: #04B404;">{{status.network.lo.ip}}</h3>
+                        </ion-item>
+
+                        <ion-item>
+                            <ion-avatar item-left>
+                                <img src="assets/img/iplooback.png">
+                            </ion-avatar>
+                            <h2>IP Looback</h2>
+                            <h3 style="color: #04B404;">{{status.network.lo.ip_loopback}}</h3>
+                        </ion-item>
+
+                        <ion-item>
+                            <ion-avatar item-left>
+                                <img src="assets/img/Subnet.png">
+                            </ion-avatar>
+                            <h2>Subnet Mask</h2>
+                            <h3 style="color: #04B404;">{{status.network.lo.sub}}</h3>
+                        </ion-item>
+
+                        <ion-item>
+                            <ion-avatar item-left>
+                                <img src="assets/img/mac.png">
+                            </ion-avatar>
+                            <h2>MAC</h2>
+                            <h3 style="color: #04B404;">{{status.network.lo.mac}}</h3>
+                        </ion-item>
+
+                        <ion-item>
+                            <ion-avatar item-left>
+                                <img src="assets/img/bcast.png">
+                            </ion-avatar>
+                            <h2>Bcast</h2>
+                            <h3 style="color: #04B404;">{{status.network.lo.bcast}}</h3>
+                        </ion-item>
+
+                        <ion-item>
+                            <ion-avatar item-left>
+                                <img src="assets/img/Inet6g.png">
+                            </ion-avatar>
+                            <h2>IP Inet6 Global</h2>
+                            <h3 style="color: #04B404;">{{status.network.lo.inet6_global}}</h3>
+                        </ion-item>
+
+                        <ion-item>
+                            <ion-avatar item-left>
+                                <img src="assets/img/Inet6.png">
+                            </ion-avatar>
+                            <h2>IP Inet6</h2>
+                            <h3 style="color: #04B404;">{{status.network.lo.inet6_link}}</h3>
+                        </ion-item>
+
+                        <ion-item>
+                            <ion-grid wrap responsive-sm>
+                                <ion-row>
+                                    <ion-col>
+                                        <!--<img src="assets/img/download.png" width="22px" height="22px">-->
+                                        <font face="verdana" font size="3">
+                                            RX Bytes</font>
+                                        <font face="verdana" font size="2" color="#04B404">{{status.network.lo.rx_bytes}}</font>
+                                    </ion-col>
+                                    <ion-col>
+                                        <!--<img src="assets/img/upload.png" width="22px" height="22px">-->
+                                        <font face="verdana" font size="3">
+                                            TX Bytes</font>
+                                        <font face="verdana" font size="2" color="#04B404">{{status.network.lo.tx_bytes}}</font>
+                                    </ion-col>
+                                </ion-row>
+                                <ion-row>
+                                    <ion-col>
+                                        <!--<img src="assets/img/download.png" width="22px" height="22px">-->
+                                        <font face="verdana" font size="3">
+                                            RX Packet</font>
+                                        <font face="verdana" font size="2" color="#04B404">{{status.network.lo.rx_packet}}</font>
+                                    </ion-col>
+                                    <ion-col>
+                                        <!--<img src="assets/img/upload.png" width="22px" height="22px">-->
+                                        <font face="verdana" font size="3">
+                                            TX Packet </font>
+                                        <font face="verdana" font size="2" color="#04B404">{{status.network.lo.tx_packet}}</font>
+                                    </ion-col>
+                                </ion-row>
+                            </ion-grid>
+                        </ion-item>
+                    </ion-list></ion-slide>
+
+            </ion-slides>
         </div>
 
     </div>
