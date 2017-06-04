@@ -974,7 +974,20 @@
                     <h2>Hostname</h2>
                     <h3 style="color: #04B404;">{{status.basic.hostname}}</h3>
                 </ion-item>
-
+                <ion-item>
+                    <ion-avatar item-left>
+                        <img src="assets/img/lasttime.png">
+                    </ion-avatar>
+                    <h2>Last boot</h2>
+                    <h3 style="color: #04B404;">{{status.basic.last_boot}}</h3>
+                </ion-item>
+                                <ion-item>
+                    <ion-avatar item-left>
+                        <img src="assets/img/user.jpg">
+                    </ion-avatar>
+                    <h2>User</h2>
+                    <h3 style="color: #04B404;">{{status.basic.user}}</h3>
+                </ion-item>
                 <ion-item>
                     <ion-avatar item-left>
                         <img src="assets/img/kernel-80.png">
@@ -1070,6 +1083,27 @@
                     <h2>Longitude</h2>
                     <h3 style="color: #04B404;">{{status.geo.longitude}}</h3>
                 </ion-item>
+                                <ion-item>
+                    <ion-avatar item-left>
+                        <img src="assets/img/hdmi.png">
+                    </ion-avatar>
+                    <h2>HDMI</h2>
+                    <h3 style="color: #04B404;">{{status.peripheral.hdmi}}</h3>
+                </ion-item>
+                                                <ion-item>
+                    <ion-avatar item-left>
+                        <img src="assets/img/camera.png">
+                    </ion-avatar>
+                    <h2>Camera</h2>
+                    <h3 style="color: #04B404;">{{status.peripheral.camera}}</h3>
+                </ion-item>
+                                                <!--<ion-item>
+                    <ion-avatar item-left>
+                        <img src="assets/img/longitude.png">
+                    </ion-avatar>
+                    <h2>USB</h2>
+                    <h3 style="color: #04B404;">001 : {{status.peripheral.usb.004}}</h3>
+                </ion-item>-->
             </ion-list>
         </div>
         <div *ngSwitchCase="'physical'">
