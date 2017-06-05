@@ -1166,7 +1166,7 @@
                                     <h1>RAM </h1>
                                 </ion-col>
                                 <ion-col col-10>
-                                    <progress-bar [progress]="status.physical.ram.used/status.physical.ram.total | percent: '.0-2' "></progress-bar>
+                                    <progress-bar [progress]="status.physical.ram.used/status.physical.ram.total*100| number:'.0-2' "></progress-bar>
                                 </ion-col>
                             </ion-row>
                         </ion-grid>

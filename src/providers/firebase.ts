@@ -21,6 +21,8 @@ export class Firebase {
   public mac;
   private macloop
   private i;
+  public send={eth0:""}
+  public receive
   // public uid;
   constructor(private af: AngularFire, public alert: Alert) {
     console.log("Firebase uid : " + this.uid)
@@ -33,7 +35,12 @@ export class Firebase {
       this.rpi = Object.keys(item).splice(0, 2)
       // console.log("subscribe in " + JSON.stringify(this.obRpi))
       console.log("subscribe in " + this.rpi)
-      
+      this.send["eth0"] = "aa"
+      console.log(this.send["eth0"])
+      // this.send["wlan0"] = this.obRpi.network.wlan0.tx_bytes
+      // this.receive["eth0"] = this.obRpi.network.eth0.px_bytes
+      // this.receive["wlan0"] = this.obRpi.network.wlan0.px_bytes
+      // console.log(`${this.send["eth0"]}  ${this.send["wlan0"]} ${this.receive["eth0"]} ${this.receive["eth0"]}`)
       for (this.i = 0; this.i < this.rpi.length;this.i++) {
         console.log(this.rpi[this.i])
         this.alertFunc(this.obRpi[this.rpi[this.i]]["basic"]["temperature"], this.alert.settingAlert.temp, "Temperature")
