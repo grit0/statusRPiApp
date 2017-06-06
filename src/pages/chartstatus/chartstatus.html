@@ -8,18 +8,23 @@
 
 <ion-content>
     <ion-slides>
-        <ion-slide>
+        <!--<ion-slide>
             <chart style="display:block;" [options]="testChart"></chart>
-        </ion-slide>
+        </ion-slide>-->
         <ion-slide>
             <chart style="display:block;" [options]="cpuChart"></chart>
         </ion-slide>
         <ion-slide>
             <chart style="display:block;" [options]="ramChart"></chart>
         </ion-slide>
+                <ion-slide>
+            <chart style="display:block;" [options]="sdChart"></chart>
+        </ion-slide>
         <ion-slide>
             <chart style="display:block;" [options]="tempChart"></chart>
         </ion-slide>
-
+        <ion-slide>
+            <chart style="display:block;" [options]="bandwidthChart"></chart>
+        </ion-slide>
     </ion-slides>
 </ion-content>

@@ -2490,11 +2490,16 @@ progress:before {
 
 @font-face {
     font-family: 'Lato-Light';
-    src: url("../assets/fonts/Lato-Regular.ttf");
+    // src: url("../assets/fonts/Lato-Regular.ttf");
 }
 
 
 .mar-gin-card {
     padding-top: 10px;
     margin-top: 10px;
+}
+.center{
+    margin:auto;
+    text-align:center;
+    align-content: center;
 }

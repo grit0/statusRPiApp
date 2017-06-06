@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import {Firebase} from '../../providers/firebase'
+import { MonitorPage} from '../../pages/monitor/monitor'
 /*
   Generated class for the Parallel page.
 
@@ -23,4 +24,10 @@ a=40;
     
   }
 
+  monitor(mac) {
+  
+    console.log("HomePage will go to MonotorPage : " + mac)
+    this.navCtrl.push(MonitorPage, { path: 'users/' + this.dataFire.uid + '/status/' + mac });
+    
+  }
 }

@@ -9,7 +9,7 @@
                 
             </button>
         </ion-buttons>
-                <ion-buttons end>
+        <ion-buttons end>
             <button ion-button icon-only (click)="removeAlertAll()">
                         <ion-icon name="trash"></ion-icon>
                 
@@ -19,13 +19,39 @@
 </ion-header>
 
 <ion-content padding>
-    <ion-item *ngFor="let item of alert.listAlert">
-        <ion-icon name="alert" item-left></ion-icon>
-        <h2>{{item.MAC | uppercase}}</h2>
-        <p>{{item.status}} : {{item.value}} %</p>
-        <p> {{item.timeago}}</p>
-        <button ion-button clear item-right (click)="removeAlert(item)"><ion-icon name="trash"></ion-icon></button>
-    </ion-item>
+    <ion-list *ngFor="let item of alert.listAlert">
+        <ion-item>
+<!--
+            <ion-icon name="alert" item-left></ion-icon>
+            <h2>{{item.MAC | uppercase}}</h2>
+            <h2>{{item.status}} : </h2>
+           {{item.value}} %
+            {{item.timeago}}
+            <button ion-button clear item-right (click)="removeAlert(item)"><ion-icon name="trash"></ion-icon></button>
+           -->
+            <ion-grid wrap responsive-sm>
+                <ion-row>
+                    <!--<ion-col width-10>-->
+                        <ion-icon name="alert" item-left></ion-icon>
+                    <!--</ion-col>-->
+                    <ion-col width-80>
+                        <ion-row>
+                            <h2>{{item.MAC | uppercase}}</h2>
+                            </ion-row><ion-row>
+                                <h3>{{item.status}} : </h3>
+                                <font face="verdana" font size="2" color="red">{{item.value}} %</font>
+                            </ion-row>
+                            <ion-row>
+                                <p>{{item.timeago}}</p>
+                            </ion-row>
+                    </ion-col>
+                    <!--<ion-col width-10>-->
+                        <button ion-button clear item-right (click)="removeAlert(item)"><ion-icon name="trash"></ion-icon></button>
+                    <!--</ion-col>-->
+                    </ion-row>
+            </ion-grid>
+        </ion-item>
+    </ion-list>
     <!--<div class="progress">
   <div class="progress-bar progress-bar-striped active" role="progressbar"
   aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width:90%">

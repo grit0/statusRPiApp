@@ -22,7 +22,7 @@
         <ion-card-content>-->
     <ion-list *ngFor="let item of dataFire.rpi">
 
-        <ion-grid wrap responsive-sm>
+        <ion-grid wrap responsive-sm (click)="monitor(item)">
             <ion-row>
                 <ion-col col-7>
                      <img src="assets/img/mac.png" width="25px" height="25px">
